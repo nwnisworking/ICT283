@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1748696285 source:c:\users\nwn\documents\github\ict283\src\course.cpp
+	"Course.h"
+	<string.h>
+
+1748696144 c:\users\nwn\documents\github\ict283\src\course.h
+	<iostream>
+
+1748695981 source:c:\users\nwn\documents\github\ict283\src\main.cpp
+	<iostream>
+	<fstream>
+	"Registration.h"
+
+1748695874 c:\users\nwn\documents\github\ict283\src\registration.h
+	<iostream>
+	"Course.h"
+
