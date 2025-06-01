@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1748696285 source:c:\users\nwn\documents\github\ict283\src\course.cpp
+	"Course.h"
+	<string.h>
+
+1748696144 c:\users\nwn\documents\github\ict283\src\course.h
+	<iostream>
+
+1748753225 source:c:\users\nwn\documents\github\ict283\src\main.cpp
+	<iostream>
+	<fstream>
+	"Registration.h"
+
+1748752093 c:\users\nwn\documents\github\ict283\src\registration.h
+	<iostream>
+	"Unit.h"
+	"Result.h"
+
+1748753319 source:c:\users\nwn\documents\github\ict283\src\registration.cpp
+	"Registration.h"
+
+1748768808 c:\users\nwn\documents\github\ict283\src\unit.h
+	<iostream>
+	<string>
+
+1748770849 c:\users\nwn\documents\github\ict283\src\result.h
+	<iostream>
+	"Unit.h"
+	"Date.h"
+
+1748770912 source:c:\users\nwn\documents\github\ict283\src\result.cpp
+	"Result.h"
+
+1748753394 source:c:\users\nwn\documents\github\ict283\src\unit.cpp
+	"Unit.h"
+
+1748745425 source:c:\users\nwn\documents\github\ict283\test\registrationtest.cpp
+	<iostream>
+
+1748770602 source:c:\users\nwn\documents\github\ict283\test\resulttest.cpp
+	"Result.h"
+
+1748764739 source:c:\users\nwn\documents\github\ict283\test\unittest.cpp
+	<iostream>
+	<assert.h>
+	"Unit.h"
+
+1748767740 source:c:\users\nwn\documents\github\ict283\src\date.cpp
+	"Date.h"
+
+1748773309 c:\users\nwn\documents\github\ict283\src\date.h
+	<iostream>
+	<string>
+
+1748769265 source:c:\users\nwn\documents\github\ict283\test\datetest.cpp
+	"Date.h"
+
