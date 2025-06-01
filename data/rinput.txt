@@ -1,0 +1,3 @@
+12345678 1 2
+Data_Structures_And_Abstractions ICT283 3 90
+Computer_Graphics ICT289 3 97

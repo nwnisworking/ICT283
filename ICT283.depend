@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1748696285 source:c:\users\nwn\documents\github\ict283\src\course.cpp
+	"Course.h"
+	<string.h>
+
+1748696144 c:\users\nwn\documents\github\ict283\src\course.h
+	<iostream>
+
+1748741364 source:c:\users\nwn\documents\github\ict283\src\main.cpp
+	<iostream>
+	<fstream>
+	"Registration.h"
+
+1748705350 c:\users\nwn\documents\github\ict283\src\registration.h
+	<iostream>
+	"Unit.h"
+	"Result.h"
+
+1748742064 source:c:\users\nwn\documents\github\ict283\src\registration.cpp
+	"Registration.h"
+
+1748704881 c:\users\nwn\documents\github\ict283\src\unit.h
+	<iostream>
+
+1748705151 c:\users\nwn\documents\github\ict283\src\result.h
+	<iostream>
+	"Unit.h"
+
+1748742170 source:c:\users\nwn\documents\github\ict283\src\result.cpp
+	"Result.h"
+
+1748742328 source:c:\users\nwn\documents\github\ict283\src\unit.cpp
+	"Unit.h"
+	<string.h>
+

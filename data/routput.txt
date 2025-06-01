@@ -1,0 +1,14 @@
+Student ID: 12345678
+Semester:   1
+ Unit ID: ICT283
+ Unit Name:   Data_Structures_And_Abstractions
+ Credits: 3
+ Marks: 90
+
+ Unit ID: ICT289
+ Unit Name:   Computer_Graphics
+ Credits: 3
+ Marks: 97
+
+Number of courses = 2
+Total credits     = 6
