@@ -65,8 +65,6 @@
 			<Option glob="2178398971" />
 		</Unit>
 		<Unit filename="src/main.cpp">
-			<Option compile="0" />
-			<Option link="0" />
 			<Option glob="2178398971" />
 		</Unit>
 		<Unit filename="test/DateTest.cpp">
@@ -88,6 +86,8 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="test/UnitTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
 			<Option glob="2585997903" />
 			<Option target="Debug" />
 		</Unit>

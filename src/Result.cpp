@@ -64,4 +64,3 @@ istream& operator >>(istream& input, Result& result){
 
   return input;
 }
-
