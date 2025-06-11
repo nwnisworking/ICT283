@@ -1,29 +1,73 @@
 #include <iostream>
 #include <fstream>
-
-#include "Registration.h"
+#include <cmath>
 
 using namespace std;
 
+double getMean(const double values[], int size);
+double getStandardDeviation(const double values[], int size);
+bool getValuesFromFile(string path, double** values, int& size);
+
 int main(){
-	ifstream infile("data/rinput.txt");
+	double* values = nullptr;
+	int size = 0;
 
-	if(!infile) return -1;
-	Registration registration;
+	if(!getValuesFromFile("data.txt", &values, size))
+		return 0;
+	
+	cout << "The standard deviation is: " << getStandardDeviation(values, size);
 
-	infile >> registration;
-
-	ofstream ofile("data/routput.txt");
-
-	ofile << registration
-	<< "Number of units   = " << registration.GetCount() << '\n'
-	<< "Total credits     = " << registration.GetCredits() << '\n';
-
-	// For Lab 3, you should comment out this line and the next 3 lines
-
-  // Course aCourse( "MTH_3020", 'B', 2 );
-  // aCourse.SetCredits( 5 );
-  // cout << aCourse << endl; // the operator << for Course is called
+	delete[] values;
 
 	return 0;
+}
+
+double getMean(const double values[], int size){
+	double sum = 0;
+
+	for(int i = 0; i < size; i++) sum+= values[i];
+
+	return sum / size;
+}
+
+double getStandardDeviation(const double values[], int size){
+	double mean = getMean(values, size);
+	double sum = 0;
+
+	for(int i = 0; i < size; i++){
+		sum+= pow(values[i] - mean, 2);
+	}
+
+	return sqrt((sum / (size - 1)));
+}
+
+bool getValuesFromFile(string path, double** values, int& size){
+	ifstream input(path);
+	string temp;
+
+	// File is non-existent
+	if(!input){
+		cout << "File cannot be found. Make sure the path is valid." << endl;
+		return false;
+	}
+
+	getline(input, temp, ',');
+
+	size = stoi(temp);
+	*values = new double[size];
+
+	// Unable to allocate memory
+	if(*values == nullptr){
+		cout << "Unable to allocate memory for some reason." << endl;
+		return false;
+	}
+
+	for(int i = 0; i < size; i++){
+		getline(input, temp, ',');
+		(*values)[i] = stod(temp);
+	}
+
+	input.close();
+
+	return true;
 }
