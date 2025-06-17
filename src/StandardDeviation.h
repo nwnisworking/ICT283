@@ -4,22 +4,55 @@
 
 #include "Vector.h"
 
+/**
+ * \brief StandardDeviation class to calculate the standard deviation of a dataset. 
+ * \param T Type of the data in the dataset (e.g., int, float, double)
+ * \details This class provides methods to calculate both sample and population standard deviations.
+ * \see https://www.calculator.net/standard-deviation-calculator.html to perform calculations and see if the result matches the method's output.
+ */
 template <class T>
 class StandardDeviation{
   public:
+  /**
+   * \brief Default constructor for the StandardDeviation object
+   */
   StandardDeviation(const Vector<T>& data){
     m_size = data.GetSize();
     m_data = data;
   }
 
+  /**
+   * \brief Destructor for the StandardDeviation object
+   */
+  virtual ~StandardDeviation(){}
+
+  /**
+   * \brief Calculate the sample standard deviation
+   * \return Sample standard deviation of the data
+   */
   T Sample();
 
+  /**
+   * \brief Calculate the population standard deviation
+   * \return Population standard deviation of the data
+   */
   T Population();
 
+  /**
+   * \brief Calculate the mean of the data
+   * \return Mean of the data
+   */
   T Mean();
 
   private:
+  /**
+   * \brief Data to calculate the standard deviation from
+   */
   Vector<T> m_data;
+  
+  /**
+   * \brief Size of the data
+   */
   unsigned m_size;
 };
 

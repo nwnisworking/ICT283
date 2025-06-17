@@ -100,13 +100,21 @@ void extractWindSpeed(){
     while(getline(ss, temp_str, ',')){
       if(col_index == WAST){
         stringstream ss_wast(temp_str);
-        Date date;
-        Time time;
 
-        ss_wast >> date >> time;
+        getline(ss_wast, temp_str, '/');
+        rec.SetDayOfMonth(stoi(temp_str));
 
-        rec.SetDate(date);
-        rec.SetTime(time);
+        getline(ss_wast, temp_str, '/');
+        rec.SetMonth(stoi(temp_str));
+
+        getline(ss_wast, temp_str, ' ');
+        rec.SetYear(stoi(temp_str));
+
+        getline(ss_wast, temp_str, ':');
+        rec.SetHours(stoi(temp_str));
+
+        getline(ss_wast, temp_str);
+        rec.SetMinutes(stoi(temp_str));
       }
       // This row is invalid and should not be recorded since it might mess up the average
       else if(col_index == S && temp_str == "N/A"){

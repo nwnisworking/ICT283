@@ -8,6 +8,10 @@ using std::string;
 
 const int INITIAL_CAPACITY = 10;
 
+/**
+ * \brief Vector class to represent a dynamic array
+ * \details This class provides methods to insert, delete, and access elements in a vector-like structure.
+ */
 template<class T>
 class Vector{
 	public:
@@ -88,7 +92,7 @@ class Vector{
   Vector<T>& operator =(const Vector<T>& vec);
 
  private:
- T *m_vector;
+ T* m_vector;
  int m_size;
  int m_capacity;
 

@@ -100,7 +100,7 @@ ostream& operator <<(ostream& output, const WindRecType& rec){
   rec.GetDate(date);
   rec.GetTime(time);
 
-  output << date << time << ',' << rec.GetSpeed();
+  output << date << ' ' << time << ',' << rec.GetSpeed();
 
   return output;
 }

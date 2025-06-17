@@ -11,7 +11,8 @@ using std::getline;
 using std::stoi;
 
 /**
- *
+ * \brief Time class to represent time in a 24-hour format
+ * \details This class encapsulates time in a 24-hour format with hours and minutes.
  */
 class Time{
   public:
@@ -57,7 +58,14 @@ class Time{
   void SetMinutes(unsigned minutes);
 
   private:
+  /**
+   * \brief Hours in a 24-hour format
+   */
   unsigned m_hours;
+  
+  /**
+   * \brief Minutes ranging from 0 to 59
+   */
   unsigned m_minutes;
 };
 

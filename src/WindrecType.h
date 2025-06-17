@@ -11,6 +11,10 @@ using std::istream;
 using std::ostream;
 using std::string;
 
+/**
+ * \brief WindRecType class to represent a wind record
+ * \details This class encapsulates the date, time, and wind speed of a wind record.
+ */
 class WindRecType{
 
   public:

@@ -37,7 +37,7 @@ unsigned Date::GetDayOfMonth() const{
 }
 
 ostream& operator <<(ostream& output, const Date& date){
-  output << date.GetDayOfMonth() << '/' << date.GetMonth() << '/' << date.GetYear() << ' ';
+  output << date.GetDayOfMonth() << '/' << date.GetMonth() << '/' << date.GetYear();
   return output;
 }
 
@@ -50,7 +50,7 @@ istream& operator >>(istream& input, Date& date){
   getline(input, temp_str, '/');
   date.SetMonth(stoi(temp_str));
 
-  getline(input, temp_str, ' ');
+  getline(input, temp_str);
   date.SetYear(stoi(temp_str));
 
   return input;

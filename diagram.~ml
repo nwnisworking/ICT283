@@ -120,10 +120,12 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">24</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">700</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">217</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">442</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">73</XPD:ATTR>
 <XPD:ATTR name="Text" type="string">Version 1.0 - Iniital Design
 Version 2.0 - Added Result class
+Version 3.0 - Added Date class
+Version 3.1 - Remove CppFriend. The CppOperator means IO has an override operator.
 </XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[3]" type="UMLTextView" guid="VSsA4/3pRE61ufH23J0ywwAA">
@@ -174,7 +176,7 @@ Version 2.0 - Added Result class
 <XPD:ATTR name="Left" type="integer">624</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">428</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">383</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">199</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">212</XPD:ATTR>
 <XPD:REF name="Model">CANOsNX41k6RnhblltiYnwAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="54sAJYnS70OQLkM6b6QcxgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="zRpyRhs9Gk6NUOm3y9jFmgAA">
