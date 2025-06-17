@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ICT283" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ICT283" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ICT283" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<UnitsGlob directory="data" wildcard="" recursive="0" id="1373286543" addToProject="1" />
+		<UnitsGlob directory="src" wildcard="" recursive="0" id="2178398971" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<UnitsGlob directory="test" wildcard="" recursive="0" id="2585997903" addToProject="1">
+			<Option target="Debug" />
+		</UnitsGlob>
+		<Unit filename="data/MetData-31-3.csv" />
+		<Unit filename="data/MetData_Mar01-2014-2015-ALL.csv" />
+		<Unit filename="data/wind_data.csv" />
+		<Unit filename="src/Date.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/Date.h">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/StandardDeviation.h">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/Time.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/Time.h">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/Vector.h">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/WindRecType.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/WindrecType.h">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/main.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="test/DateTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/TimeTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/VectorTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
