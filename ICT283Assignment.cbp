@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ICT283Assignment" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ICT283Assignment" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ICT283Assignment" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<UnitsGlob directory="include" wildcard="" recursive="0" id="316380917" addToProject="1" />
+		<Unit filename="2024.zip" />
+		<Unit filename="ICT283-Assignment 1.pdf" />
+		<Unit filename="README.md" />
+		<Unit filename="data/MetData-31-3a.csv" />
+		<Unit filename="data/MetData_Mar01-2014-Mar01-2015-ALL.csv" />
+		<Unit filename="data/MetData_Mar01-2015-Mar01-2016-ALL.csv" />
+		<Unit filename="data/README.txt" />
+		<Unit filename="data/SensorCodes.rtf" />
+		<Unit filename="data/data_source.txt" />
+		<Unit filename="include/Controller.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Date.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Model.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/StandardDeviation.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Time.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Vector.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/View.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/WeatherRecord.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="q-and-q.txt" />
+		<Unit filename="src/Controller.cpp" />
+		<Unit filename="src/Date.cpp" />
+		<Unit filename="src/Model.cpp" />
+		<Unit filename="src/Time.cpp" />
+		<Unit filename="src/View.cpp" />
+		<Unit filename="src/WeatherRecord.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

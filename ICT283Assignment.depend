@@ -1,0 +1,98 @@
+# depslib dependency file v1.0
+1750266466 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
+	"Date.h"
+
+1750153748 c:\users\nwnis\onedrive\documents\github\ict283\src\date.h
+	<iostream>
+	<string>
+
+1750265190 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
+	"Model.h"
+
+1750266526 source:c:\users\nwnis\onedrive\documents\github\ict283\src\time.cpp
+	"Time.h"
+
+1750153748 c:\users\nwnis\onedrive\documents\github\ict283\src\time.h
+	<iostream>
+	<string>
+
+1750252885 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
+	"Controller.h"
+
+1750156099 c:\users\nwnis\onedrive\documents\github\ict283\src\controller.h
+
+1750155298 c:\users\nwnis\onedrive\documents\github\ict283\src\view.h
+	"Controller.h"
+
+1750155578 c:\users\nwnis\onedrive\documents\github\ict283\src\model.h
+
+1750241095 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
+	"Controller.h"
+	"Model.h"
+	"View.h"
+	<iostream>
+	<string>
+	"StandardDeviation.h"
+	"Vector.h"
+
+1750156028 c:\users\nwnis\onedrive\documents\github\ict283\src\maincontroller.h
+	"Controller.h"
+
+1750158667 source:c:\users\nwnis\onedrive\documents\github\ict283\src\mainview.cpp
+	"MainView.h"
+
+1750153963 c:\users\nwnis\onedrive\documents\github\ict283\src\mainview.h
+	"MainController.h"
+	"View.h"
+
+1750158014 source:c:\users\nwnis\onedrive\documents\github\ict283\src\maincontroller.cpp
+	"MainController.h"
+	"Controller.h"
+	<iostream>
+
+1750268064 c:\users\nwnis\onedrive\documents\github\ict283\include\date.h
+
+1750268188 c:\users\nwnis\onedrive\documents\github\ict283\include\time.h
+
+1750268022 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
+	"View.h"
+	"Model.h"
+
+1750266936 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
+	<string>
+	<iostream>
+	"Controller.h"
+	"StandardDeviation.h"
+
+1750158052 c:\users\nwnis\onedrive\documents\github\ict283\include\maincontroller.h
+	"Controller.h"
+	"MainView.h"
+
+1750266979 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
+	"View.h"
+
+1750158659 c:\users\nwnis\onedrive\documents\github\ict283\include\mainview.h
+	"View.h"
+
+1750268250 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
+	<string>
+	<iostream>
+	<fstream>
+	<stdexcept>
+	"WeatherRecord.h"
+	"Vector.h"
+
+1750266287 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
+	"Date.h"
+	"Time.h"
+
+1750268236 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
+	<stdexcept>
+
+1750249716 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
+	"WeatherRecord.h"
+
+1750219486 c:\users\nwnis\onedrive\documents\github\ict283\include\standarddeviation.h
+	<cmath>
+	"Vector.h"
+
