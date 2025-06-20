@@ -107,21 +107,6 @@ void Test3(){
   try{
     cout << "Invalid values in CSV source" << endl;
     Model model("data/data_source_2.txt");
-    Vector<WeatherRecord*> data;
-
-    model.FindDate(data, 3, 2016); // March 2016
-
-    for(int i = 0; i < 3; i++){
-      WeatherRecord* record = data[i];
-      cout << "Record " << i + 1 << ": "
-           << "Date: " << record->GetDayOfMonth() << "/"
-           << record->GetMonth() << "/" << record->GetYear()
-           << ", Temperature: " << record->GetTemperature()
-           << ", Wind Speed: " << record->GetSpeed()
-           << ", Solar Radiation: " << record->GetRadiation()
-           << endl;
-    }
-
     View view;
     Controller controller(view, model);
 

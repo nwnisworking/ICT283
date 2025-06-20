@@ -7,6 +7,7 @@ using std::endl;
 
 // Forward declarations of test functions
 void Test1();
+void Test2();
 
 int main() {
   cout << "Standard Deviation Test Program" << endl << endl;
@@ -20,15 +21,23 @@ int main() {
 
 void Test1() {
   Vector<float> vec;
+  StandardDeviation<float> sd(vec);
+  
   vec.Insert(5.0f);
   vec.Insert(10.0f);
   vec.Insert(15.0f);
   vec.Insert(20.0f);
   vec.Insert(25.0f);
 
-  StandardDeviation<float> sd(vec);
-
   cout << "Calculation Test" << endl;
   cout << "Mean: " << sd.Mean() << ", Sample: " << sd.Sample() << ", Population: " << sd.Population() << endl;
   cout << "Sample Result: 7.9056941504209, Population Result: 7.0710678118655" << endl;
+}
+
+void Test2(){
+  Vector<float> vec;
+  StandardDeviation<float> sd(vec);
+
+  cout << "Empty Vector Test" << endl;
+  cout << "Mean: " << sd.Mean() << ", Sample: " << sd.Sample() << ", Population: " << sd.Population() << endl;
 }
