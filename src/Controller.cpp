@@ -9,10 +9,18 @@ void Controller::Init(){
   m_view.Render("home");
 }
 
-void Controller::FindDate(Vector<WeatherRecord*>& data, unsigned month, unsigned year) const{
-  m_model.FindDate(data, month, year);
+void Controller::GetTemperature(Vector<SDResult>& result, unsigned year) const {
+  m_model.GetTemperature(result, year);
 }
 
-void Controller::FindDate(Vector<WeatherRecord*>& data, unsigned year) const{
-  m_model.FindDate(data, year);
+void Controller::GetWindSpeed(SDResult& result, unsigned month, unsigned year) const{
+  m_model.GetWindSpeed(result, month, year);
+}
+
+void Controller::GetTotalSolarRadiation(Vector<float>& result, unsigned year) const {
+  m_model.GetTotalSolarRadiation(result, year);
+}
+
+void Controller::GetAWSAATAndTST(Vector<SDResult>& ws_result, Vector<SDResult>& t_result, Vector<float>& sr_result, unsigned year) const {
+  m_model.GetAWSAATAndTST(ws_result, t_result, sr_result, year);
 }

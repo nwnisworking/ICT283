@@ -1,0 +1,84 @@
+# depslib dependency file v1.0
+1750373177 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
+	"Controller.h"
+
+1750382579 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
+	"View.h"
+	"Model.h"
+
+1750389378 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
+	<string>
+	<iostream>
+	<iomanip>
+	<fstream>
+	<stdexcept>
+	"Controller.h"
+	"StandardDeviation.h"
+
+1750386538 c:\users\nwnis\onedrive\documents\github\ict283\include\standarddeviation.h
+	<cmath>
+	"Vector.h"
+
+1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
+	<stdexcept>
+
+1750346822 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
+	<string>
+	<iostream>
+	<fstream>
+	<stdexcept>
+	"WeatherRecord.h"
+	"Vector.h"
+	"SDResult.h"
+	"StandardDeviation.h"
+
+1750383985 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
+	"Date.h"
+	"MTime.h"
+
+1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\date.h
+
+1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\time.h
+
+1750290786 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
+	"Date.h"
+
+1750331071 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
+	<stdexcept>
+	"Controller.h"
+	"Model.h"
+	"View.h"
+
+1750386751 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
+	"Model.h"
+
+1750289191 source:c:\users\nwnis\onedrive\documents\github\ict283\src\time.cpp
+	"Time.h"
+
+1750269300 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
+	"WeatherRecord.h"
+
+1750387582 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
+	"View.h"
+
+1750289147 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
+	"Date.h"
+	<iostream>
+
+1750289284 source:c:\users\nwnis\onedrive\documents\github\ict283\test\weatherrecordtest.cpp
+	"WeatherRecord.h"
+	<iostream>
+
+1750314430 source:c:\users\nwnis\onedrive\documents\github\ict283\test\applicationtest.cpp
+	"Model.h"
+	"View.h"
+	"Controller.h"
+	<iostream>
+
+1750347020 c:\users\nwnis\onedrive\documents\github\ict283\include\sdresult.h
+
+1750383895 source:c:\users\nwnis\onedrive\documents\github\ict283\src\mtime.cpp
+	"MTime.h"
+
+1750383958 c:\users\nwnis\onedrive\documents\github\ict283\include\mtime.h
+

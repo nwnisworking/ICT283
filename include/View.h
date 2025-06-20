@@ -3,6 +3,10 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <stdexcept>
+
 #include "Controller.h"
 #include "StandardDeviation.h"
 
@@ -10,8 +14,11 @@ using std::string;
 using std::cout;
 using std::endl;
 using std::cin;
-using std::to_string;
-
+using std::setprecision;
+using std::fixed;
+using std::ofstream;
+using std::isdigit;
+using std::out_of_range;
 class Controller;
 
 /**

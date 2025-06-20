@@ -2,7 +2,7 @@
 #define WEATHERRECORD_H
 
 #include "Date.h"
-#include "Time.h"
+#include "MTime.h"
 
 /**
  * \brief WeatherRecord class to represent a weather record
@@ -20,15 +20,15 @@ class WeatherRecord{
    * \param speed Speed of the wind in m/s
    */
   void SetSpeed(int speed);
-  
+
   /**
    * \brief Sets the solar radiation
    * \param radiation Solar radiation in W/m2
    */
   void SetRadiation(int radiation);
-  
+
   /**
-   * \brief Sets the temperature 
+   * \brief Sets the temperature
    * \param temperature Temperature in degrees celsius
    */
   void SetTemperature(float temperature);
@@ -68,13 +68,13 @@ class WeatherRecord{
    * \return Speed of the wind in m/s
    */
   int GetSpeed() const;
-  
+
   /**
    * \brief Gets the solar radiation
    * \return Solar radiation in W/m2
    */
   int GetRadiation() const;
-  
+
   /**
    * \brief Gets the temperature
    * \return Temperature in degrees celsius
@@ -135,7 +135,7 @@ class WeatherRecord{
   /**
    * \brief Time of the weather record
    */
-  Time m_time;
+  MTime m_time;
 };
 
-#endif 
+#endif

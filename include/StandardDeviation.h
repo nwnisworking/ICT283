@@ -42,20 +42,17 @@ class StandardDeviation{
    * \brief Data to calculate the standard deviation from
    */
   const Vector<T>& m_data;
-
-  /**
-   * \brief Size of the data
-   */
-  unsigned m_size;
 };
 
 template <class T>
-StandardDeviation<T>::StandardDeviation(const Vector<T>& data) : m_data(data){
-  m_size = data.GetSize();
-}
+StandardDeviation<T>::StandardDeviation(const Vector<T>& data) : m_data(data){}
 
 template <class T>
 T StandardDeviation<T>::Sample(){
+  unsigned m_size = m_data.GetSize();
+
+  if(m_size == 0) return 0;
+
   T sum = 0;
   T mean = Mean();
 
@@ -68,6 +65,10 @@ T StandardDeviation<T>::Sample(){
 
 template <class T>
 T StandardDeviation<T>::Population(){
+  unsigned m_size = m_data.GetSize();
+
+  if(m_size == 0) return 0;
+
   T sum = 0;
   T mean = Mean();
 
@@ -80,6 +81,10 @@ T StandardDeviation<T>::Population(){
 
 template <class T>
 T StandardDeviation<T>::Mean(){
+  unsigned m_size = m_data.GetSize();
+
+  if(m_size == 0) return 0;
+
   T total = 0;
 
   for(unsigned i = 0; i < m_size; i++){
@@ -87,6 +92,6 @@ T StandardDeviation<T>::Mean(){
   }
 
   return total / m_size;
-}
+};
 
 #endif

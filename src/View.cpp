@@ -21,7 +21,7 @@ void View::Render(const string& page) const{
     return;
   }
   else if(page != "home"){
-    cout << endl << "Invalid option provided." << endl << endl;
+    cout << "Invalid option provided: " << page << endl << endl;
   }
 
   Home();
@@ -29,7 +29,6 @@ void View::Render(const string& page) const{
 
 void View::Home() const{
   string option;
-
   cout << "Murdoch University Weather Station" << endl << endl;
   cout << "1. Average and Sample Deviation Wind Speed for a Specific Month and Year" << endl;
   cout << "2. Average and Sample Deviation Ambient Air Temperature for each Month of a specific Year" << endl;
@@ -45,233 +44,142 @@ void View::Home() const{
 
 void View::AvgWindSpeedAndDeviationForMonthAndYear() const{
   unsigned month, year;
-  Vector<WeatherRecord*> data;
-  Vector<float> wind_speeds;
+  SDResult result{};
 
   cout << endl << "Average and Sample Standard Deviation for Wind Speed" << endl;
 
   month = InputMonth();
   year = InputYear();
 
-  // Find the weather records for the specified month and year
-  m_controller->FindDate(data, month, year);
+  m_controller->GetWindSpeed(result, month, year);
 
   cout << endl << MonthToString(month) << " " << year << ": ";
 
-  if(data.GetSize() == 0){
-    cout << "No Data" << endl << endl;
+  if(result.size == 0){
+    cout << "No Data";
   }
   else{
-    for(int i = 0; i < data.GetSize(); i++){
-      WeatherRecord* record = data[i];
-
-      if(record->GetSpeed() != -9999){
-        wind_speeds.Insert(record->GetSpeed() * 3.6); // Convert m/s to km/h
-      }
-    }
-
-    StandardDeviation<float> deviation(wind_speeds);
-
-    cout << endl << endl;
-    cout << "Average Wind Speed: " << deviation.Mean() << " km/h" << endl;
-    cout << "Sample stdev: " << deviation.Sample() << endl;
+    cout << endl << "Average wind speed: " << fixed << setprecision(1) << result.average << " km/h";
+    cout << endl << "Sample stdev: " << fixed << setprecision(1) << result.sample;
   }
+
+  cout << endl;
 
   Continue();
 }
 
 void View::AvgAmbientAirTemperatureAndDeviationForYear() const{
   unsigned year;
-  Vector<WeatherRecord*> data;
-
-  cout << endl << "Average and Sample Standard Deviation for Ambient Air Temperature for specific year" << endl;
+  Vector<SDResult> result(12); // Array to hold results for each month
 
   year = InputYear();
 
-  // Find the weather records for the specified year
-  m_controller->FindDate(data, year);
+  m_controller->GetTemperature(result, year);
 
-  cout << endl << "Year "<< year << endl;
-
-  // Guard clause to prevent code from executing any further
-  if(data.GetSize() == 0){
-    cout << ": " << "No Data" << endl << endl;
-
-    Continue();
-    return;
-  }
-
-  unsigned j = 0;
+  cout << endl << "Average and Sample Standard Deviation for Ambient Air Temperature for each Month of a specific Year" << endl;
+  cout << endl << year;
 
   for(unsigned i = 0; i < 12; i++){
-    Vector<float> temperatures;
+    cout << endl << MonthToString(i + 1) << ": ";
 
-    // Loops through the weather records for the specified month
-    for(unsigned size = data.GetSize(); j < size; j++){
-      WeatherRecord* record = data[j];
-
-      // Months must match along with the temperature not being a sentinel value
-      if(record->GetMonth() == i + 1){
-        if(record->GetTemperature() != -9999){
-          temperatures.Insert(record->GetTemperature());
-        }
-      }
-      else{
-        break;
-      }
-    }
-
-    cout << MonthToString(i + 1) << ": ";
-
-    // No temperature recorded for the month
-    if(temperatures.GetSize() == 0){
-      cout << "No Data" << endl;
+    // If no data for the month, print "No Data"
+    if(result[i].size == 0){
+      cout << "No Data";
     }
     else{
-      StandardDeviation<float> sd(temperatures);
-      printf("average: %.1f degrees C, stdev: %.1f\n", sd.Mean(), sd.Sample());
+      cout << "average: " << fixed << setprecision(1) << result[i].average << " degrees C, ";
+      cout << "stdev: " << fixed << setprecision(1) << result[i].sample;
     }
   }
+
+  cout << endl;
 
   Continue();
 }
 
 void View::TotalSolarRadiationForYear() const{
   unsigned year;
-  Vector<WeatherRecord*> data;
+  Vector<float> result;
 
-  cout << "Total Solar Radiation in kWh/m2 for each Month of a specific Year" << endl;
-
+  cout << endl << "Total Solar Radiation in kWh/m2 for each Month of a specific Year" << endl;
   year = InputYear();
 
-  // Find the weather records for the specified year
-  m_controller->FindDate(data, year);
-
-  cout << endl << "Year "<< year << endl;
-
-  if(data.GetSize() == 0){
-    cout << ": " << "No Data" << endl << endl;
-
-    Continue();
-    return;
-  }
-
-  unsigned j = 0;
+  m_controller->GetTotalSolarRadiation(result, year);
 
   for(unsigned i = 0; i < 12; i++){
-    float total_sr = 0;
+    cout << endl << MonthToString(i + 1) << ": ";
 
-    for(unsigned size = data.GetSize(); j < size; j++){
-      WeatherRecord* record = data[j];
-
-      if(record->GetMonth() == i + 1){
-        // Calculate total solar radiation for the month
-        // As per the assignment, solar radiation is only counted if it is greater than or equal to 100 W/m2
-        if(record->GetRadiation() != -9999 && record->GetRadiation() >= 100){
-          // Convert W/m2 to kWh/m2 for the month
-          total_sr+= (record->GetRadiation() * (10.0f / 60.0f)) / 1000.0f;
-        }
-      }
-      else{
-        // Escape the loop since the month has been processed
-        break;
-      }
-    }
-
-    cout << MonthToString(i + 1) << ": ";
-
-    if(total_sr == 0){
-      cout << "No Data" << endl;
+    if(result[i] == 0){
+      cout << "No Data";
     }
     else{
-      printf("%.1f kWh/m2\n", total_sr);
+      cout << fixed << setprecision(1) << result[i] << " kWh/m2";
     }
   }
+
+  cout << endl;
 
   Continue();
 }
 
 void View::AWSAATAndTSR() const{
   unsigned year;
-  Vector<WeatherRecord*> data;
+  Vector<SDResult> ws_result(12);
+  Vector<SDResult> t_result(12);
+  Vector<float> sr_result(12);
+  ofstream out_file("data/WindTempSolar.csv");
 
-  cout << "Average Wind Speed(SD), Air Ambient Temperature(SD), and Total Solar Radiation for specific year" << endl;
+  cout << endl << "Average Wind Speed(SD), Air Ambient Temperature(SD), and Total Solar Radiation for specific year" << endl << endl;
 
   year = InputYear();
 
-  m_controller->FindDate(data, year);
+  cout << endl;
 
-  unsigned j = 0;
+  m_controller->GetAWSAATAndTST(ws_result, t_result, sr_result, year);
 
-  cout << endl << "Year "<< year << endl;
+  out_file << year << endl;
 
-  if(data.GetSize() == 0){
-    cout << ": " << "No Data" << endl << endl;
-
-    Continue();
-    return;
-  }
+  bool has_data = false; // Flag to check if there is any data for the year
 
   for(unsigned i = 0; i < 12; i++){
-    float total_sr = 0;
-    Vector<float> temperature;
-    Vector<float> wind_speed;
-
-    for(unsigned size = data.GetSize(); j < size; j++){
-      WeatherRecord* record = data[j];
-
-      if(record->GetMonth() == i + 1){
-        // Calculate total solar radiation for the month
-        // As per the assignment, solar radiation is only counted if it is greater than or equal to 100 W/m2
-        if(record->GetRadiation() != -9999 && record->GetRadiation() >= 100){
-          total_sr+= (record->GetRadiation() * (10.0f / 60.0f)) / 1000.0f;
-        }
-
-        if(record->GetTemperature() != -9999){
-          temperature.Insert(record->GetTemperature());
-        }
-
-        if(record->GetSpeed() != -9999){
-          wind_speed.Insert(record->GetSpeed() * 3.6);
-        }
-      }
-      else{
-        // Escape the loop since the month has been processed
-        break;
-      }
-    }
-
-    cout << MonthToString(i + 1) << ",";
-
-    if(total_sr == 0){
-      cout << "No Data" << endl;
+    // No data for this month. Ignore the data
+    if(ws_result[i].size == 0 && t_result[i].size == 0 && sr_result[i] == 0){
+      continue;
     }
     else{
-
-      if(wind_speed.GetSize() > 0){
-        StandardDeviation<float> ws_sd(wind_speed);
-        printf("%.1f(%.1f),", ws_sd.Mean(), ws_sd.Sample());
-      }
-      else{
-        cout << ",";
-      }
-
-      if(temperature.GetSize() > 0){
-        StandardDeviation<float> t_sd(temperature);
-        printf("%.1f(%.1f),", t_sd.Mean(), t_sd.Sample());
-      }
-      else{
-        cout << ",";
-      }
-
-      if(total_sr == 0){
-        cout << "" << endl;
-      }
-      else{
-        printf("%.1f\n", total_sr);
-      }
+      has_data = true;
     }
+
+    out_file << MonthToString(i + 1) << ",";
+
+    if(ws_result[i].size != 0){
+      out_file << fixed << setprecision(1) << ws_result[i].average << "(" << fixed << setprecision(1) << ws_result[i].sample << ")";
+    }
+
+    out_file << ",";
+
+    if(t_result[i].size != 0){
+      out_file << fixed << setprecision(1) << t_result[i].average << "(" << fixed << setprecision(1) << t_result[i].sample << ")";
+    }
+
+    out_file << ",";
+
+    if(sr_result[i] != 0){
+      out_file << fixed << setprecision(1) << sr_result[i];
+    }
+
+    out_file << endl;
   }
+
+  if(!has_data){
+    out_file << "No Data" << endl;
+    cout << "No data available for the specified year." << endl;
+  }
+  else{
+    cout << "Data for " << year << " has been saved to data/WindTempSolar.csv" << endl;
+  }
+
+  out_file.close();
 
   Continue();
 }
@@ -304,29 +212,87 @@ const string& View::MonthToString(unsigned month){
 }
 
 unsigned View::InputMonth() const{
+  string temp_str;
+  bool is_valid = true;
   unsigned month;
-
   do{
+    is_valid = true;
     cout << "Please enter the month (1-12): ";
-    cin >> month;
+    cin >> temp_str;
+
+    for(int i = 0, size = temp_str.length(); i < size; i++){
+      if(!isdigit(temp_str[i])){
+        is_valid = false;
+        break;
+      }
+    }
 
     ClearBuffer();
+
+    if(is_valid){
+      // Catch out of range exception in case it breaks the range of unsigned int
+      try{
+        month = stoi(temp_str);
+  
+        if(month < 1 || month > 12){
+          is_valid = false;
+          cout << "Invalid month. Please enter a number between 1 and 12." << endl << endl;
+        }
+      }
+      catch(const out_of_range& e){
+        is_valid = false;
+        cout << "Invalid month. Please enter a number between 1 and 12." << endl << endl;
+      }
+    }
+    else{
+      cout << "Invalid input. Please enter a valid month." << endl << endl;
+    }
   }
-  while(month < 1 || month > 12);
+  while(!is_valid);
 
   return month;
 }
 
 unsigned View::InputYear() const{
+  string temp_str;
+  bool is_valid = true;
   unsigned year;
 
   do{
+    is_valid = true;
+
     cout << "Please enter the year: ";
-    cin >> year;
+    cin >> temp_str;
+
+    for(int i = 0, size = temp_str.length(); i < size; i++){
+      if(!isdigit(temp_str[i])){
+        is_valid = false;
+        break;
+      }
+    }
 
     ClearBuffer();
+
+    if(is_valid){
+      // Catch for out of range exception in case it breaks the range of unsigned int
+      try{
+        year = stoi(temp_str);
+  
+        if(year < 1 || year > 9999){
+          is_valid = false;
+          cout << "Invalid year. Year must be between 1 and 9999." << endl << endl;
+        }
+      }
+      catch(const out_of_range& e){
+        is_valid = false;
+        cout << "Invalid year. Year must be between 1 and 9999." << endl << endl;
+      }
+    }
+    else{
+      cout << "Invalid input. Please enter a valid year." << endl << endl;
+    }
   }
-  while(year < 0);
+  while(!is_valid);
 
   return year;
 }

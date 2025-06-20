@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ICT283" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ICT283" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=gnu++11" />
+					<Add option="-std=gnu11" />
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ICT283" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<UnitsGlob directory="include" wildcard="" recursive="0" id="316380917" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<UnitsGlob directory="src" wildcard="" recursive="0" id="2178398971" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<UnitsGlob directory="test" wildcard="" recursive="0" id="2585997903" addToProject="1">
+			<Option target="Debug" />
+		</UnitsGlob>
+		<Unit filename="include/Controller.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Date.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/MTime.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Model.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/SDResult.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/StandardDeviation.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/Vector.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/View.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/WeatherRecord.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="src/Controller.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/Date.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/MTime.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/Model.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/View.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/WeatherRecord.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="src/main.cpp">
+			<Option glob="2178398971" />
+		</Unit>
+		<Unit filename="test/ApplicationTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/DateTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/StandardDeviationTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/TimeTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/VectorTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/WeatherRecordTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

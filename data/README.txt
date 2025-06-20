@@ -1,13 +1,16 @@
-For assignment 1, read only one data file.  You MUST test with each file, as the columns have different order.
+Excel TEST_INVALID_VALUES.csv
 
-The data file must reside in this "data" folder.
+Wind Speed
+=SUM(K5:K20 * 3.6) / COUNT(K5:K20)
+=STDEV.S(K5:K20 * 3.6)
 
-Declare the file name data_source.txt in main(). 
+Temperature
+=SUM(R4:R20) / COUNT(R4:R20)
+=STDEV.S(R4:R20)
 
-main() routine must show the high level algorithm implementation. So the following must be crystal clear in main()
+Solar
+=SUM((L5:L20 * (10/60) )/ 1000)
 
-input  - where it is from
+Excel DIFF_NAMING.csv
 
-processing - high level processing steps (no detail, just calls to routines)
-
-output - where output is going to go
+Changes made to the column 
