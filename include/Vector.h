@@ -90,8 +90,19 @@ class Vector{
   Vector<T>& operator =(const Vector<T>& vec);
 
  private:
+ /**
+  * \brief Stores the vector data
+  */
  T* m_vector;
+
+ /**
+  * \brief Size of the vector
+  */
  int m_size;
+
+ /**
+  * \brief Capacity of the vector
+  */
  int m_capacity;
 
  /**
@@ -104,6 +115,11 @@ template <class T>
 Vector<T>::Vector(){
   m_capacity = INITIAL_CAPACITY;
   m_vector = new T[m_capacity];
+
+  if(m_vector == nullptr){
+    m_capacity = 0;
+  }
+
   m_size = 0;
 }
 
@@ -126,8 +142,14 @@ Vector<T>::Vector(const Vector<T>& vec){
   m_capacity = vec.m_capacity;
   m_vector = new T[m_capacity];
 
-  for(int i = 0; i < m_size; i++){
-    m_vector[i] = vec.m_vector[i];
+  // Check if memory allocation was successful
+  if(m_vector != nullptr){
+    for(int i = 0; i < m_size; i++){
+      m_vector[i] = vec.m_vector[i];
+    }
+  }
+  else{
+    m_capacity = 0;
   }
 }
 
@@ -235,6 +257,11 @@ Vector<T>& Vector<T>::operator =(const Vector<T>& vec){
   m_size = vec.m_size;
   m_capacity = vec.m_capacity;
   m_vector = new T[m_capacity];
+
+  if(m_vector == nullptr){
+    m_capacity = 0;
+    return *this; // Return early if memory allocation fails
+  }
 
   for(int i = 0; i < m_size; i++){
     m_vector[i] = vec.m_vector[i];

@@ -35,3 +35,16 @@ void Date::SetDayOfMonth(unsigned day_of_month){
 unsigned Date::GetDayOfMonth() const{
   return m_day_of_month;
 }
+
+const string& Date::MonthToString(unsigned month){
+  if(month < 1 || month > 12){
+    throw std::out_of_range("Month must be between 1 and 12");
+  }
+
+  static const string months[] = {
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  };
+
+  return months[month - 1];
+}

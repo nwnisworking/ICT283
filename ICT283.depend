@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1750373177 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
+1750502690 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
 	"Controller.h"
 
-1750382579 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
+1750420614 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
 	"View.h"
 	"Model.h"
 
-1750389378 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
+1750502683 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
 	<string>
 	<iostream>
 	<iomanip>
@@ -14,15 +14,16 @@
 	<stdexcept>
 	"Controller.h"
 	"StandardDeviation.h"
+	"Date.h"
 
-1750386538 c:\users\nwnis\onedrive\documents\github\ict283\include\standarddeviation.h
+1750431640 c:\users\nwnis\onedrive\documents\github\ict283\include\standarddeviation.h
 	<cmath>
 	"Vector.h"
 
-1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
+1750501938 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
 	<stdexcept>
 
-1750346822 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
+1750519181 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
 	<string>
 	<iostream>
 	<fstream>
@@ -32,25 +33,28 @@
 	"SDResult.h"
 	"StandardDeviation.h"
 
-1750383985 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
+1750511648 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
 	"Date.h"
 	"MTime.h"
 
-1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\date.h
+1750499359 c:\users\nwnis\onedrive\documents\github\ict283\include\date.h
+	<string>
+	<stdexcept>
 
 1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\time.h
 
-1750290786 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
+1750498721 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
 	"Date.h"
 
-1750331071 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
+1750579352 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
 	<stdexcept>
 	"Controller.h"
 	"Model.h"
 	"View.h"
 
-1750389597 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
+1750587852 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
 	"Model.h"
+	<fstream>
 
 1750289191 source:c:\users\nwnis\onedrive\documents\github\ict283\src\time.cpp
 	"Time.h"
@@ -58,7 +62,7 @@
 1750269300 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
 	"WeatherRecord.h"
 
-1750389512 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
+1750502707 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
 	"View.h"
 
 1750289147 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
@@ -69,16 +73,27 @@
 	"WeatherRecord.h"
 	<iostream>
 
-1750314430 source:c:\users\nwnis\onedrive\documents\github\ict283\test\applicationtest.cpp
+1750390111 source:c:\users\nwnis\onedrive\documents\github\ict283\test\applicationtest.cpp
 	"Model.h"
 	"View.h"
 	"Controller.h"
 	<iostream>
 
-1750347020 c:\users\nwnis\onedrive\documents\github\ict283\include\sdresult.h
+1750497474 c:\users\nwnis\onedrive\documents\github\ict283\include\sdresult.h
 
 1750383895 source:c:\users\nwnis\onedrive\documents\github\ict283\src\mtime.cpp
 	"MTime.h"
 
 1750383958 c:\users\nwnis\onedrive\documents\github\ict283\include\mtime.h
+
+1750443610 source:c:\users\nwnis\onedrive\documents\github\ict283\src\sdresult.cpp
+	"SDResult.h"
+
+1750581334 source:c:\users\nwnis\onedrive\documents\github\ict283\test\standarddeviationtest.cpp
+	"StandardDeviation.h"
+	<iostream>
+
+1750287985 source:c:\users\nwnis\onedrive\documents\github\ict283\test\vectortest.cpp
+	"Vector.h"
+	<iostream>
 

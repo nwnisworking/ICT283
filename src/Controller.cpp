@@ -2,11 +2,10 @@
 
 Controller::Controller(View &view, Model &model) : m_view(view), m_model(model){
   m_view.SetController(this);
-  m_model.SetController(this);
 }
 
-void Controller::Init(){
-  m_view.Render("home");
+void Controller::Init() const{
+  m_view.Render();
 }
 
 void Controller::GetTemperature(Vector<SDResult>& result, unsigned year) const {

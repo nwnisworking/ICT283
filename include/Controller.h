@@ -22,7 +22,7 @@ class Controller{
   /**
    * \brief Initializes the Controller.
    */
-  void Init();
+  void Init() const;
 
   /**
    * \brief Gets the wind speed for a specific month and year.
@@ -47,9 +47,9 @@ class Controller{
   void GetTotalSolarRadiation(Vector<float>& result, unsigned year) const;
 
   /**
-   * \brief Gets the average wind speed, average ambient air temperature, and total solar radiation for each month of a specific year.
-   * \param ws_result An array of Result objects to store the average wind speed data for each month.
-   * \param t_result An array of Result objects to store the average ambient air temperature data for each month.
+   * \brief Gets the average and sample deviation of wind speed, ambient air temperature, and the total solar radiation for each month of a specific year.
+   * \param ws_result An array of Result objects to store the average and sample deviation of wind speed data for each month.
+   * \param t_result An array of Result objects to store the average and sample deviation of ambient air temperature data for each month.
    * \param sr_result An array of Result objects to store the total solar radiation data for each month.
    * \param year The year to search for.
    */

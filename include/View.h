@@ -9,6 +9,7 @@
 
 #include "Controller.h"
 #include "StandardDeviation.h"
+#include "Date.h"
 
 using std::string;
 using std::cout;
@@ -27,15 +28,14 @@ class Controller;
 class View{
   public:
   /**
-   * \brief Constructor for the View class.
+   * \brief Sets the controller.
    */
   void SetController(const Controller* controller);
 
   /**
    * \brief Renders the specified page.
-   * \param page The page to render.
    */
-  void Render(const string& page) const;
+  void Render() const;
 
   private:
   /**
@@ -47,11 +47,6 @@ class View{
    * \brief Clears the input buffer.
    */
   void ClearBuffer() const;
-
-  /**
-   * \brief Displays the home page.
-   */
-  void Home() const;
 
   /**
    * \brief Displays the average wind speed and sample standard deviation for a specific month and year.
@@ -84,12 +79,6 @@ class View{
    * \return The year number (positive integer).
    */
   unsigned InputYear() const;
-
-  /**
-   * \brief Converts a month number to its string representation.
-   * \param month The month number (1-12).
-   */
-  static const string& MonthToString(unsigned month);
 
   /**
    * \brief A pointer to the Controller object.

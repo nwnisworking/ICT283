@@ -14,6 +14,9 @@ int main() {
 
   Test1();
   cout << endl;
+  Test2();
+  cout << endl;
+
   cout << "All tests completed." << endl;
 
   return 0;
@@ -30,8 +33,7 @@ void Test1() {
   vec.Insert(25.0f);
 
   cout << "Calculation Test" << endl;
-  cout << "Mean: " << sd.Mean() << ", Sample: " << sd.Sample() << ", Population: " << sd.Population() << endl;
-  cout << "Sample Result: 7.9056941504209, Population Result: 7.0710678118655" << endl;
+  cout << "Mean: " << sd.Mean() << ", Sample: " << sd.Sample() << endl;
 }
 
 void Test2(){
@@ -39,5 +41,5 @@ void Test2(){
   StandardDeviation<float> sd(vec);
 
   cout << "Empty Vector Test" << endl;
-  cout << "Mean: " << sd.Mean() << ", Sample: " << sd.Sample() << ", Population: " << sd.Population() << endl;
+  cout << "Mean: " << sd.Mean() << ", Sample: " << sd.Sample() << endl;
 }

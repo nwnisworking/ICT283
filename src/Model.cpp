@@ -1,5 +1,10 @@
 #include "Model.h"
 
+#include <fstream>
+
+using std::ofstream;
+using std::endl;
+
 Model::Model(const string& source){
   ifstream finput(source);
   string temp_str;
@@ -13,6 +18,11 @@ Model::Model(const string& source){
   // We assume the source only contain a row
   getline(finput, temp_str);
 
+  // The file cannot be processed because it is empty (TXT)!
+  if(temp_str.empty()){
+    throw runtime_error("File is empty.");
+  }
+
   finput.close();
   finput.open("data/" + temp_str);
 
@@ -22,7 +32,13 @@ Model::Model(const string& source){
 
   // Process the first line as the header
   getline(finput, temp_str);
-  AnalyzeHeader(headers, temp_str);
+
+  // The file cannot be processed because it is empty (CSV)!
+  if(temp_str.empty()){
+    throw runtime_error("File is empty.");
+  }
+
+  ExtractData(headers, temp_str);
 
   // Check if the required headers are present
   int ws_index = FindAlias(headers, WIND_SPEED_ALIAS);
@@ -35,114 +51,114 @@ Model::Model(const string& source){
     throw runtime_error("Required headers not found in the data file.");
   }
 
+  WeatherRecord record;
+
   while(getline(finput, temp_str)){
+    Vector<string> data;
+    // Skip empty lines
     if(temp_str.empty()) continue;
 
-    int row_size = temp_str.size();
-    int count = 0;
-    WeatherRecord record;
+    ExtractData(data, temp_str);
 
-    for(int i = 0, start = 0; i <= row_size; i++){
-      if(temp_str[i] == ',' || i == row_size){
-        string value = temp_str.substr(start, i - start);
-        start = i + 1;
+    string wast = data[0];
+    string ws = data[ws_index];
+    string sr = data[sr_index];
+    string temp = data[t_index];
 
-        if(count == 0){
-          Trim(value);
-          int pos = 0, npos = 0;
+    if(!wast.empty()){
+      int pos = 0, npos = 0;
 
-          npos = value.find('/', pos);
-          record.SetDayOfMonth(stoi(value.substr(pos, npos - pos)));
-          pos = npos + 1;
+      npos = wast.find('/', pos);
+      record.SetDayOfMonth(stoi(wast.substr(pos, npos - pos)));
+      pos = npos + 1;
 
-          npos = value.find('/', pos);
-          record.SetMonth(stoi(value.substr(pos, npos - pos)));
-          pos = npos + 1;
+      npos = wast.find('/', pos);
+      record.SetMonth(stoi(wast.substr(pos, npos - pos)));
+      pos = npos + 1;
 
-          npos = value.find(' ', pos);
-          record.SetYear(stoi(value.substr(pos, npos - pos)));
-          pos = npos + 1;
+      npos = wast.find(' ', pos);
+      record.SetYear(stoi(wast.substr(pos, npos - pos)));
+      pos = npos + 1;
 
-          npos = value.find(':', pos);
-          record.SetHours(stoi(value.substr(pos, npos - pos)));
-          pos = npos + 1;
+      npos = wast.find(':', pos);
+      record.SetHours(stoi(wast.substr(pos, npos - pos)));
+      pos = npos + 1;
 
-          record.SetMinutes(stoi(value.substr(pos)));
-        }
-        else if(count == ws_index){
-          Trim(value);
+      record.SetMinutes(stoi(wast.substr(pos)));
+    }
 
-          if(value == "N/A" || value.empty() || value == "NaN" || value == "offline"){
-            value = "-9999"; // Treat N/A, NaN, and offline as 0
-          }
+    if(ws.empty() || ws == "N/A" || ws == "NaN" || ws == "offline"){
+      record.SetSpeed(-9999);
+    }
+    else{
+        try{
+          record.SetSpeed(stoi(ws));
 
-          record.SetSpeed(stoi(value));
-
-          // The wind speed cannot be negative
           if(record.GetSpeed() < 0){
             record.SetSpeed(-9999);
           }
         }
-        else if(count == sr_index){
-          Trim(value);
+        catch(const invalid_argument& e){
+          record.SetSpeed(-9999);
+        }
+    }
 
-          if(value == "N/A" || value.empty() || value == "NaN" || value == "offline"){
-            value = "-9999"; // Treat N/A, NaN, and offline as 0
-          }
+    if(sr.empty() || sr == "N/A" || sr == "NaN" || sr == "offline"){
+      record.SetRadiation(-9999);
+    }
+    else{
+        try{
+          record.SetRadiation(stoi(sr));
 
-          record.SetRadiation(stoi(value));
-
-          // The radiation cannot be negative or greater than 1500
-          // 1500 is the maximum value for solar radiation in W/m2 with the highest value around 1361 W/m2
+          // Note: Highest radiation value on Earth is around 1361 W/m2
+          // 1500 is used as a threshold to filter out unrealistic values
           if(record.GetRadiation() < 0 || record.GetRadiation() > 1500){
             record.SetRadiation(-9999);
           }
         }
-        else if(count == t_index){
-          Trim(value);
+        catch(const invalid_argument& e){
+          record.SetRadiation(-9999);
+        }
+    }
 
-          if(value == "N/A" || value.empty() || value == "NaN" || value == "offline"){
-            value = "-9999"; // Treat N/A, NaN, and offline as 0
-          }
-
-          record.SetTemperature(stof(value));
+    if(temp.empty() || temp == "N/A" || temp == "NaN" || temp == "offline"){
+      record.SetTemperature(-9999.0f);
+    }
+    else{
+        try{
+          record.SetTemperature(stof(temp));
 
           // The temperature cannot be less than -100 or greater than 100
-          // -100 is the minimum value for temperature in degrees Celsius. The minimum temperature on Earth is around -89.2 °C
-          // 100 is the maximum value for temperature in degrees Celsius. The maximum temperature on Earth is around 56.7 °C
+          // -100 is the minimum value for temperature in degrees Celsius. The minimum temperature on Earth is around -89.2 C
+          // 100 is the maximum value for temperature in degrees Celsius. The maximum temperature on Earth is around 56.7 C
           if(record.GetTemperature() < -100 || record.GetTemperature() > 100){
             record.SetTemperature(-9999.0f); // Treat out of range values as -9999
           }
         }
-
-        count++;
-      }
+        catch(const invalid_argument& e){
+          record.SetTemperature(-9999);
+        }
     }
 
-    weather_records.Insert(record);
+    m_weather_records.Insert(record);
   }
 
   finput.close();
-
 }
 
-void Model::SetController(const Controller* controller){
-  m_controller = controller;
-}
-
-void Model::AnalyzeHeader(Vector<string> &headers, const string& line){
-  for(int i = 0, size = line.size(), start = 0; i <= size; ++i){
+void Model::ExtractData(Vector<string>& data, const string& line){
+  for(int i = 0, size = line.size(), start = 0; i <= size; i++){
     if(line[i] == ',' || i == size){
-      string header = line.substr(start, i - start);
+      string value = line.substr(start, i - start);
       start = i + 1;
 
-      Trim(header);
-      headers.Insert(header);
+      Trim(value);
+      data.Insert(value);
     }
   }
 }
 
-int Model::FindAlias(const Vector<string>& headers, const string* alias){
+int Model::FindAlias(const Vector<string>& headers, const string* alias) const{
   for(int i = 0; i < headers.GetSize(); i++){
     for(int j = 0; alias[j] != ""; j++){
       if(headers[i] == alias[j]){
@@ -179,8 +195,8 @@ void Model::GetWindSpeed(SDResult& result, unsigned month, unsigned year) const{
   Vector<float> wind_speeds;
   StandardDeviation<float> sd(wind_speeds);
 
-  for(int i = 0; i < weather_records.GetSize(); i++){
-    WeatherRecord record = weather_records[i];
+  for(int i = 0; i < m_weather_records.GetSize(); i++){
+    WeatherRecord record = m_weather_records[i];
 
     if(record.GetMonth() == month && record.GetYear() == year && record.GetSpeed() != -9999){
       // Convert m/s to km/h
@@ -195,15 +211,14 @@ void Model::GetWindSpeed(SDResult& result, unsigned month, unsigned year) const{
 
 void Model::GetTemperature(Vector<SDResult>& result, unsigned year) const{
   int i = 0;
-  int size = weather_records.GetSize();
+  int size = m_weather_records.GetSize();
 
   for(unsigned month = 0; month < 12; month++){
     Vector<float> temperatures;
     StandardDeviation<float> sd(temperatures);
-    SDResult sd_result;
 
     for(; i < size; i++){
-      WeatherRecord record = weather_records[i];
+      WeatherRecord record = m_weather_records[i];
 
       // Ignore records that do not match the year
       if(record.GetYear() != year){
@@ -221,23 +236,24 @@ void Model::GetTemperature(Vector<SDResult>& result, unsigned year) const{
       }
     }
 
-    sd_result.average = sd.Mean();
-    sd_result.sample = sd.Sample();
-    sd_result.size = temperatures.GetSize();
-
-    result.Insert(sd_result);
+    result.Insert(SDResult{
+      .average = sd.Mean(),
+      .sample = sd.Sample(),
+      .size = (unsigned) temperatures.GetSize()
+    });
+    // result.Insert(SDResult(sd.Mean(), sd.Sample(), temperatures.GetSize()));
   }
 }
 
 void Model::GetTotalSolarRadiation(Vector<float>& total, unsigned year) const{
   int i = 0;
-  int size = weather_records.GetSize();
+  int size = m_weather_records.GetSize();
 
   for(unsigned month = 0; month < 12; month++){
     float sr = 0;
 
     for(; i < size; i++){
-      WeatherRecord record = weather_records[i];
+      WeatherRecord record = m_weather_records[i];
 
       // Ignore records that do not match the year
       if(record.GetYear() != year){
@@ -261,7 +277,7 @@ void Model::GetTotalSolarRadiation(Vector<float>& total, unsigned year) const{
 
 void Model::GetAWSAATAndTST(Vector<SDResult>& ws_result, Vector<SDResult>& t_result, Vector<float>& sr_result, unsigned year) const{
   int i = 0;
-  int size = weather_records.GetSize();
+  int size = m_weather_records.GetSize();
 
   for(unsigned month = 0; month < 12; month++){
     Vector<float> ws;
@@ -271,7 +287,7 @@ void Model::GetAWSAATAndTST(Vector<SDResult>& ws_result, Vector<SDResult>& t_res
     StandardDeviation<float> t_sd(t);
 
     for(; i < size; i++){
-      WeatherRecord record = weather_records[i];
+      WeatherRecord record = m_weather_records[i];
 
       // Ignore records that do not match the year
       if(record.GetYear() != year){
@@ -296,19 +312,17 @@ void Model::GetAWSAATAndTST(Vector<SDResult>& ws_result, Vector<SDResult>& t_res
       }
     }
 
-    SDResult t_sd_result;
-    SDResult ws_sd_result;
-    
-    t_sd_result.average = t_sd.Mean();
-    t_sd_result.sample = t_sd.Sample();
-    t_sd_result.size = t.GetSize();
-    
-    ws_sd_result.average = ws_sd.Mean();
-    ws_sd_result.sample = ws_sd.Sample();
-    ws_sd_result.size = ws.GetSize();
-    
     sr_result.Insert(sr);
-    t_result.Insert(t_sd_result);
-    ws_result.Insert(ws_sd_result);
+    t_result.Insert(SDResult{
+      .average = t_sd.Mean(),
+      .sample = t_sd.Sample(),
+      .size = (unsigned) t.GetSize()
+    });
+
+    ws_result.Insert(SDResult{
+      .average = ws_sd.Mean(),
+      .sample = ws_sd.Sample(),
+      .size = (unsigned) ws.GetSize()
+    });
   }
 }
