@@ -46,6 +46,9 @@
 		<UnitsGlob directory="test" wildcard="" recursive="0" id="2585997903" addToProject="1">
 			<Option target="Debug" />
 		</UnitsGlob>
+		<Unit filename="include/CSVRecord.h">
+			<Option glob="316380917" />
+		</Unit>
 		<Unit filename="include/Controller.h">
 			<Option glob="316380917" />
 		</Unit>
@@ -73,6 +76,9 @@
 		<Unit filename="include/WeatherRecord.h">
 			<Option glob="316380917" />
 		</Unit>
+		<Unit filename="src/CSVRecord.cpp">
+			<Option glob="2178398971" />
+		</Unit>
 		<Unit filename="src/Controller.cpp">
 			<Option glob="2178398971" />
 		</Unit>
@@ -85,9 +91,6 @@
 		<Unit filename="src/Model.cpp">
 			<Option glob="2178398971" />
 		</Unit>
-		<Unit filename="src/SDResult.cpp">
-			<Option glob="2178398971" />
-		</Unit>
 		<Unit filename="src/View.cpp">
 			<Option glob="2178398971" />
 		</Unit>
@@ -95,11 +98,11 @@
 			<Option glob="2178398971" />
 		</Unit>
 		<Unit filename="src/main.cpp">
-			<Option compile="0" />
-			<Option link="0" />
 			<Option glob="2178398971" />
 		</Unit>
 		<Unit filename="test/ApplicationTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
 			<Option glob="2585997903" />
 			<Option target="Debug" />
 		</Unit>

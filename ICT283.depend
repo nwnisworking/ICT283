@@ -20,18 +20,21 @@
 	<cmath>
 	"Vector.h"
 
-1750501938 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
+1751038113 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
 	<stdexcept>
+	<vector>
 
-1750519181 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
+1751031833 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
 	<string>
 	<iostream>
 	<fstream>
 	<stdexcept>
+	<map>
 	"WeatherRecord.h"
 	"Vector.h"
 	"SDResult.h"
 	"StandardDeviation.h"
+	"CSVRecord.h"
 
 1750511648 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
 	"Date.h"
@@ -46,15 +49,14 @@
 1750498721 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
 	"Date.h"
 
-1750579352 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
+1750907146 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
 	<stdexcept>
 	"Controller.h"
 	"Model.h"
 	"View.h"
 
-1750587852 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
+1751033273 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
 	"Model.h"
-	<fstream>
 
 1750289191 source:c:\users\nwnis\onedrive\documents\github\ict283\src\time.cpp
 	"Time.h"
@@ -65,7 +67,7 @@
 1750502707 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
 	"View.h"
 
-1750289147 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
+1750578891 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
 	"Date.h"
 	<iostream>
 
@@ -93,7 +95,23 @@
 	"StandardDeviation.h"
 	<iostream>
 
-1750287985 source:c:\users\nwnis\onedrive\documents\github\ict283\test\vectortest.cpp
+1751035024 source:c:\users\nwnis\onedrive\documents\github\ict283\test\vectortest.cpp
 	"Vector.h"
 	<iostream>
+
+1750389648 source:c:\users\nwnis\onedrive\documents\github\ict283\test\timetest.cpp
+	"MTime.h"
+	<iostream>
+
+1751032907 c:\users\nwnis\onedrive\documents\github\ict283\include\csvrecord.h
+	<iostream>
+	<fstream>
+	<string>
+	<sstream>
+	<map>
+	"Vector.h"
+	"WeatherRecord.h"
+
+1751033268 source:c:\users\nwnis\onedrive\documents\github\ict283\src\csvrecord.cpp
+	"CSVRecord.h"
 
