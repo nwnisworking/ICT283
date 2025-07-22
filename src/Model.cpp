@@ -1,194 +1,19 @@
 #include "Model.h"
 
-#include <fstream>
-
-using std::ofstream;
-using std::endl;
-
 Model::Model(const string& source){
   ifstream finput(source);
   string temp_str;
-  Vector<string> headers;
 
   // Cannot do anything if the file is not found
   if(!finput){
     throw runtime_error("Data source file not found: " + source);
   }
 
-  // We assume the source only contain a row
-  getline(finput, temp_str);
-
-  // The file cannot be processed because it is empty (TXT)!
-  if(temp_str.empty()){
-    throw runtime_error("File is empty.");
-  }
-
-  finput.close();
-  finput.open("data/" + temp_str);
-
-  if(!finput){
-    throw runtime_error("Data file not found: data/" + temp_str);
-  }
-
-  // Process the first line as the header
-  getline(finput, temp_str);
-
-  // The file cannot be processed because it is empty (CSV)!
-  if(temp_str.empty()){
-    throw runtime_error("File is empty.");
-  }
-
-  ExtractData(headers, temp_str);
-
-  // Check if the required headers are present
-  int ws_index = FindAlias(headers, WIND_SPEED_ALIAS);
-  int sr_index = FindAlias(headers, SOLAR_RADIATION_ALIAS);
-  int t_index = FindAlias(headers, TEMPERATURE_ALIAS);
-
-  // If any of the required headers are not found, throw an error
-  // Either the header is not present or the alias is not found
-  if(ws_index == -1 || sr_index == -1 || t_index == -1){
-    throw runtime_error("Required headers not found in the data file.");
-  }
-
-  WeatherRecord record;
-
   while(getline(finput, temp_str)){
-    Vector<string> data;
-    // Skip empty lines
-    if(temp_str.empty()) continue;
-
-    ExtractData(data, temp_str);
-
-    string wast = data[0];
-    string ws = data[ws_index];
-    string sr = data[sr_index];
-    string temp = data[t_index];
-
-    if(!wast.empty()){
-      int pos = 0, npos = 0;
-
-      npos = wast.find('/', pos);
-      record.SetDayOfMonth(stoi(wast.substr(pos, npos - pos)));
-      pos = npos + 1;
-
-      npos = wast.find('/', pos);
-      record.SetMonth(stoi(wast.substr(pos, npos - pos)));
-      pos = npos + 1;
-
-      npos = wast.find(' ', pos);
-      record.SetYear(stoi(wast.substr(pos, npos - pos)));
-      pos = npos + 1;
-
-      npos = wast.find(':', pos);
-      record.SetHours(stoi(wast.substr(pos, npos - pos)));
-      pos = npos + 1;
-
-      record.SetMinutes(stoi(wast.substr(pos)));
-    }
-
-    if(ws.empty() || ws == "N/A" || ws == "NaN" || ws == "offline"){
-      record.SetSpeed(-9999);
-    }
-    else{
-        try{
-          record.SetSpeed(stoi(ws));
-
-          if(record.GetSpeed() < 0){
-            record.SetSpeed(-9999);
-          }
-        }
-        catch(const invalid_argument& e){
-          record.SetSpeed(-9999);
-        }
-    }
-
-    if(sr.empty() || sr == "N/A" || sr == "NaN" || sr == "offline"){
-      record.SetRadiation(-9999);
-    }
-    else{
-        try{
-          record.SetRadiation(stoi(sr));
-
-          // Note: Highest radiation value on Earth is around 1361 W/m2
-          // 1500 is used as a threshold to filter out unrealistic values
-          if(record.GetRadiation() < 0 || record.GetRadiation() > 1500){
-            record.SetRadiation(-9999);
-          }
-        }
-        catch(const invalid_argument& e){
-          record.SetRadiation(-9999);
-        }
-    }
-
-    if(temp.empty() || temp == "N/A" || temp == "NaN" || temp == "offline"){
-      record.SetTemperature(-9999.0f);
-    }
-    else{
-        try{
-          record.SetTemperature(stof(temp));
-
-          // The temperature cannot be less than -100 or greater than 100
-          // -100 is the minimum value for temperature in degrees Celsius. The minimum temperature on Earth is around -89.2 C
-          // 100 is the maximum value for temperature in degrees Celsius. The maximum temperature on Earth is around 56.7 C
-          if(record.GetTemperature() < -100 || record.GetTemperature() > 100){
-            record.SetTemperature(-9999.0f); // Treat out of range values as -9999
-          }
-        }
-        catch(const invalid_argument& e){
-          record.SetTemperature(-9999);
-        }
-    }
-
-    m_weather_records.Insert(record);
+    CSVRecord::Load(temp_str, m_weather_records);
   }
 
   finput.close();
-}
-
-void Model::ExtractData(Vector<string>& data, const string& line){
-  for(int i = 0, size = line.size(), start = 0; i <= size; i++){
-    if(line[i] == ',' || i == size){
-      string value = line.substr(start, i - start);
-      start = i + 1;
-
-      Trim(value);
-      data.Insert(value);
-    }
-  }
-}
-
-int Model::FindAlias(const Vector<string>& headers, const string* alias) const{
-  for(int i = 0; i < headers.GetSize(); i++){
-    for(int j = 0; alias[j] != ""; j++){
-      if(headers[i] == alias[j]){
-        return i;
-      }
-    }
-  }
-
-  return -1;
-}
-
-void Model::Trim(string& str){
-  int size = str.size();
-  int start = 0;
-  int end = size - 1;
-
-  while(start< size && str[start] == ' '){
-    start++;
-  }
-
-  while(end > start && str[end] == ' '){
-    end--;
-  }
-
-  if(start > end){
-    str = "";
-  }
-  else{
-    str = str.substr(start, end - start + 1);
-  }
 }
 
 void Model::GetWindSpeed(SDResult& result, unsigned month, unsigned year) const{

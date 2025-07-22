@@ -5,28 +5,24 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+#include <map>
 
 #include "WeatherRecord.h"
 #include "Vector.h"
 #include "SDResult.h"
 #include "StandardDeviation.h"
+#include "CSVRecord.h"
 
 using std::string;
 using std::ifstream;
 using std::stof;
 using std::runtime_error;
 using std::invalid_argument;
+using std::map;
 
 // Inform the compiler about the Controller class since Controller
 // may not be defined yet. Forward declaration is used here.
 class Controller;
-
-// Define aliases for different weather parameters
-const string WIND_SPEED_ALIAS[] = {"Wind_Speed", "S", ""};
-
-const string SOLAR_RADIATION_ALIAS[] = {"Solar_Rad", "SR", ""};
-
-const string TEMPERATURE_ALIAS[] = {"Ambient_Air_Temperature", "Temperature", "T", ""};
 
 /**
  * \brief The Model class handles the weather data and provides methods to find records based on date.
@@ -75,27 +71,6 @@ class Model{
    * \brief A vector to hold weather records.
    */
   Vector<WeatherRecord> m_weather_records;
-
-  /**
-   * \brief Trims leading and trailing whitespace from a string.
-   * \param str The string to be trimmed.
-   */
-  static void Trim(string& str);
-
-  /**
-   * \brief Extracts data from a line and populates the data vector.
-   * \param data A vector to hold the extracted data.
-   * \param line The line from which data is to be extracted.
-   */
-  void ExtractData(Vector<string>& data, const string& line);
-
-  /**
-   * \brief Finds the index of an alias in the headers vector.
-   * \param header The vector of headers.
-   * \param alias The alias to be searched for from the list of aliases.
-   * \return The index of the alias in the headers vector, or -1 if not found.
-   */
-  int FindAlias(const Vector<string>& header, const string* alias) const;
 };
 
 #endif
