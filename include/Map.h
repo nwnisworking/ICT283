@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include <map>
+#include <iostream>
 
 using std::map;
 
@@ -15,8 +16,13 @@ class Map{
    * \brief A map to hold key-value pairs.
    */
   map<K, V> m_map;
-  
+
   public:
+  /**
+   * \brief Default constructor of the Map class.
+   */
+  Map() = default;
+
   /**
    * \brief Copy constructor of the Map class.
    */
@@ -47,6 +53,13 @@ class Map{
    * \brief Get the value associated with a key.
    * \param key The key to be searched.
    * \return Pointer to the value if found, otherwise nullptr.
+   */
+  V* Get(const K& key);
+
+  /**
+   * \brief Get the value associated with a key (const version).
+   * \param key The key to be searched.
+   * \return Reference to the value if found, otherwise throws an exception.
    */
   const V* Get(const K& key) const;
 
@@ -80,8 +93,19 @@ bool Map<K, V>::Search(const K& key) const{
 }
 
 template <class K, class V>
+V* Map<K, V>::Get(const K& key){
+  typename map<K,V>::iterator iter = m_map.find(key);
+
+  if(iter != m_map.end()){
+    return &iter->second;
+  }
+
+  return nullptr;
+}
+
+template <class K, class V>
 const V* Map<K, V>::Get(const K& key) const{
-  map::iterator iter = m_map.find(key);
+  typename map<K,V>::const_iterator iter = m_map.find(key);
 
   if(iter != m_map.end()){
     return &iter->second;
