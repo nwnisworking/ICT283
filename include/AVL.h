@@ -12,7 +12,6 @@ using std::endl;
  */
 template <class T>
 class AVL : public BST<T>{
-
   private:
   /**
    * \brief Insert a node into the AVL tree and balances it. This overrides the insert method from BST as it requires balancing after insertion.

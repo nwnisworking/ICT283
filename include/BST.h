@@ -1,7 +1,8 @@
-#include <iostream>
-
 #ifndef BST_H
 #define BST_H
+
+#include <iostream>
+#include "Vector.h"
 
 /**
  * \brief A Node structure for the Binary Search Tree (BST).
@@ -61,21 +62,21 @@ class BST{
    * \param node The current node to traverse.
    * \param fn The function to apply to each node's data.
    */
-  void InOrder(Node<T>* node, void(*fn)(const T& data)) const;
+  void InOrder(Node<T>* node, bool(*fn)(const T& data), Vector<T>& vec) const;
 
   /**
    * \brief Perform a post-order traversal of the BST.
    * \param node The current node to traverse.
    * \param fn The function to apply to each node's data.
    */
-  void PostOrder(Node<T>* node, void(*fn)(const T& data)) const;
+  void PostOrder(Node<T>* node, bool(*fn)(const T& data), Vector<T>& vec) const;
 
   /**
    * \brief Perform a pre-order traversal of the BST.
    * \param node The current node to traverse.
    * \param fn The function to apply to each node's data.
    */
-  void PreOrder(Node<T>* node, void (*fn)(const T& data)) const;
+  void PreOrder(Node<T>* node, bool(*fn)(const T& data), Vector<T>& vec) const;
 
   /**
    * \brief Destroy the entire tree and free memory.
@@ -147,24 +148,29 @@ class BST{
    * \brief Perform an in-order traversal of the BST.
    * \param fn The function to apply to each node's data.
    */
-  void InOrder(void (*fn)(const T& data)) const;
+  Vector<T> InOrder(bool (*fn)(const T& data)) const;
 
   /**
    * \brief Perform a post-order traversal of the BST.
    * \param fn The function to apply to each node's data.
    */
-  void PostOrder(void (*fn)(const T& data)) const;
+  Vector<T> PostOrder(bool (*fn)(const T& data)) const;
 
   /**
    * \brief Perform a pre-order traversal of the BST.
    * \param fn The function to apply to each node's data.
    */
-  void PreOrder(void (*fn)(const T& data)) const;
+  Vector<T> PreOrder(bool (*fn)(const T& data)) const;
 
   /**
    * \brief Destroy the entire tree and free memory.
    */
   void DestroyTree();
+
+  /**
+   * \brief Check whether tree is empty.
+   */
+  bool IsEmpty() const;
 
   /**
    * \brief Destroy the tree starting from a specific node.
@@ -181,6 +187,11 @@ BST<T>::BST(const BST<T>& other){
 template <class T>
 BST<T>::~BST(){
   DestroyTree();
+}
+
+template <class T>
+bool BST<T>::IsEmpty() const{
+  return root == nullptr;
 }
 
 template <class T>
@@ -251,29 +262,40 @@ Node<T>* BST<T>::DeleteNode(Node<T>* node, const T& data){
 }
 
 template <class T>
-void BST<T>::InOrder(Node<T>* node, void (*fn)(const T& data)) const{
+void BST<T>::InOrder(Node<T>* node, bool (*fn)(const T& data), Vector<T>& vec) const{
   if(node == nullptr) return;
 
-  InOrder(node->left, fn);
-  fn(node->value);
-  InOrder(node->right, fn);
+  InOrder(node->left, fn, vec);
+
+  if(fn(node->value)){
+    vec.Insert(node->value);
+  }
+
+  InOrder(node->right, fn, vec);
 }
 
 template <class T>
-void BST<T>::PostOrder(Node<T>* node, void (*fn)(const T& data)) const{
+void BST<T>::PostOrder(Node<T>* node, bool (*fn)(const T& data), Vector<T>& vec) const{
   if(node == nullptr) return;
-  PostOrder(node->left, fn);
-  PostOrder(node->right, fn);
-  fn(node->value);
+
+  PostOrder(node->left, fn, vec);
+  PostOrder(node->right, fn, vec);
+
+  if(fn(node->value)){
+    vec.Insert(node->value);
+  }
 }
 
 template <class T>
-void BST<T>::PreOrder(Node<T>* node, void (*fn)(const T& data)) const{
+void BST<T>::PreOrder(Node<T>* node, bool (*fn)(const T& data), Vector<T>& vec) const{
   if(node == nullptr) return;
 
-  fn(node->value);
-  PreOrder(node->left, fn);
-  PreOrder(node->right, fn);
+  if(fn(node->value)){
+    vec.Insert(node->value);
+  }
+
+  PreOrder(node->left, fn, vec);
+  PreOrder(node->right, fn, vec);
 }
 
 template <class T>
@@ -301,18 +323,27 @@ void BST<T>::DeleteNode(const T& data){
 }
 
 template <class T>
-void BST<T>::InOrder(void (*fn)(const T& data)) const{
-  InOrder(root, fn);
+Vector<T> BST<T>::InOrder(bool (*fn)(const T& data)) const{
+  Vector<T> data;
+  InOrder(root, fn, data);
+
+  return data;
 }
 
 template <class T>
-void BST<T>::PostOrder(void (*fn)(const T& data)) const{
-  PostOrder(root, fn);
+Vector<T> BST<T>::PostOrder(bool (*fn)(const T& data)) const{
+  Vector<T> data;
+  PostOrder(root, fn, data);
+
+  return data;
 }
 
 template <class T>
-void BST<T>::PreOrder(void (*fn)(const T& data)) const{
-  PreOrder(root, fn);
+Vector<T> BST<T>::PreOrder(bool (*fn)(const T& data)) const{
+  Vector<T> data;
+  PreOrder(root, fn, data);
+
+  return data;
 }
 
 template <class T>
