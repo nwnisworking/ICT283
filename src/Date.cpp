@@ -48,3 +48,27 @@ const string& Date::MonthToString(unsigned month){
 
   return months[month - 1];
 }
+
+int Date::GetValue() const{
+  return m_year * 372 + m_month * 31 + m_day_of_month;
+}
+
+bool Date::operator <(const Date& other) const{
+  return GetValue() < other.GetValue();
+}
+
+bool Date::operator >(const Date& other) const{
+  return GetValue() > other.GetValue();
+}
+
+bool Date::operator ==(const Date& other)const{
+  return GetValue() == other.GetValue();
+}
+
+bool Date::operator <=(const Date& other) const{
+  return GetValue() <= other.GetValue();
+}
+
+bool Date::operator >=(const Date& other) const{
+  return GetValue() >= other.GetValue();
+}

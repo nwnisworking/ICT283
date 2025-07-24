@@ -21,7 +21,7 @@ class Date{
    * \brief Parametized constructor for Date object
    * \param day_of_month Day of the month
    * \param month Month
-   * \param year Year 
+   * \param year Year
    */
   Date(unsigned day_of_month, unsigned month, unsigned year);
 
@@ -60,6 +60,18 @@ class Date{
    * \return Get day of the month
    */
   unsigned GetDayOfMonth() const;
+
+  int GetValue() const;
+
+  bool operator <(const Date& other) const;
+
+  bool operator >(const Date& other) const;
+
+  bool operator ==(const Date& other) const;
+
+  bool operator <=(const Date& other) const;
+
+  bool operator >=(const Date& other) const;
 
   /**
    * \brief Converts a month number to its string representation.

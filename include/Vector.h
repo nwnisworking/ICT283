@@ -16,7 +16,7 @@ class Vector{
   /**
    * \brief Default constructor for the Vector object
    */
-  Vector();
+  Vector() = default;
 
   /**
    * \brief Parametized constructor for the Vector object
@@ -79,12 +79,14 @@ class Vector{
    */
   Vector<T>& operator =(const Vector<T>& vec);
 
+  /**
+   * \brief Clear the vector by removing all elements
+   */
+  void Clear();
+
   private:
   vector<T> m_vector;
 };
-
-template <class T>
-Vector<T>::Vector(){}
 
 template <class T>
 Vector<T>::Vector(int size){
@@ -156,6 +158,11 @@ Vector<T>& Vector<T>::operator =(const Vector<T>& vec){
   }
 
   return *this;
+}
+
+template <class T>
+void Vector<T>::Clear(){
+  m_vector.clear();
 }
 
 #endif
