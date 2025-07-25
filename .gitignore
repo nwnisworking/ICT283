@@ -3,3 +3,5 @@
 WindTempSolar.csv
 **/.vscode/**
 html/**
+cppcheck.txt
+CppCheckResults.xml
