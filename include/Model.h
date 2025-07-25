@@ -5,20 +5,16 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
-#include <map>
 
 #include "WeatherRecord.h"
-#include "Vector.h"
-#include "SDResult.h"
-#include "StandardDeviation.h"
+#include "AVL.h"
+#include "Map.h"
 #include "CSVRecord.h"
 
 using std::string;
 using std::ifstream;
-using std::stof;
 using std::runtime_error;
 using std::invalid_argument;
-using std::map;
 
 // Inform the compiler about the Controller class since Controller
 // may not be defined yet. Forward declaration is used here.
@@ -36,41 +32,38 @@ class Model{
   Model(const string& source);
 
   /**
-   * \brief Gets the wind speed for a specific month and year.
-   * \param result A Result object to store the calculated wind speed data.
-   * \param month The month to search for (1-12).
-   * \param year The year to search for.
+   * \brief Get the first key in the model.
+   * \return The first int key.
    */
-  void GetWindSpeed(SDResult& result, unsigned month, unsigned year) const;
+   int GetFirstKey();
 
-  /**
-   * \brief Gets the temperature for each month of a specific year.
-   * \param result An array of Result objects to store the calculated temperature data for each month
-   * \param year The year to search for.
-   */
-  void GetTemperature(Vector<SDResult>& result, unsigned year) const;
+   /**
+    * \brief Get the last key in the model.
+    * \return The last unsigned key.
+    */
+   int GetLastKey();
 
-  /**
-   * \brief Gets the total solar radiation for each month of a specific year.
-   * \param result An array of float values to store the total solar radiation data for each month
-   * \param year The year to search for.
-   */
-  void GetTotalSolarRadiation(Vector<float>& result, unsigned year) const;
-
-  /**
-   * \brief Gets the average wind speed, average ambient air temperature, and total solar radiation for each month of a specific year.
-   * \param ws_result An array of Result objects to store the average wind speed data for each month
-   * \param t_result An array of Result objects to store the average ambient air temperature data for each month
-   * \param sr_result An array of Result objects to store the total solar radiation data for each month
-   * \param year The year to search for.
-   */
-  void GetAWSAATAndTST(Vector<SDResult>& ws_result, Vector<SDResult>& t_result, Vector<float>& sr_result, unsigned year) const;
-
+   /**
+    * \brief Get weather records for a specific date.
+    * \param date The date for which to retrieve records.
+    * \return A reference to the AVL tree containing weather records for the specified date.
+    */
+   const AVL<WeatherRecord>* Get(const Date& date) const;
   private:
   /**
-   * \brief A vector to hold weather records.
+   * \brief A map to hold weather records indexed by year and month.
    */
-  Vector<WeatherRecord> m_weather_records;
+  Map<int, AVL<WeatherRecord>> m_weather_records;
+
+  /**
+   * \brief The earliest year in the weather records.
+   */
+  int m_earliest_year;
+
+  /**
+   * \brief The latest year in the weather records.
+   */
+  int m_latest_year;
 };
 
 #endif
