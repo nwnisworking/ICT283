@@ -1,52 +1,52 @@
 # depslib dependency file v1.0
-1750502690 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
+1753435679 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
 	"Controller.h"
 
-1750420614 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
+1753409144 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
 	"View.h"
 	"Model.h"
 
-1750502683 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
+1753428158 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
 	<string>
 	<iostream>
 	<iomanip>
 	<fstream>
 	<stdexcept>
 	"Controller.h"
-	"StandardDeviation.h"
 	"Date.h"
+	"Utils.h"
+	"AVL.h"
+	"WeatherRecord.h"
 
 1750431640 c:\users\nwnis\onedrive\documents\github\ict283\include\standarddeviation.h
 	<cmath>
 	"Vector.h"
 
-1751038113 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
+1753271908 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
 	<stdexcept>
 	<vector>
 
-1751031833 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
+1753410866 c:\users\nwnis\onedrive\documents\github\ict283\include\model.h
 	<string>
 	<iostream>
 	<fstream>
 	<stdexcept>
-	<map>
 	"WeatherRecord.h"
-	"Vector.h"
-	"SDResult.h"
-	"StandardDeviation.h"
+	"AVL.h"
+	"Map.h"
 	"CSVRecord.h"
 
-1750511648 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
+1753349797 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
 	"Date.h"
 	"MTime.h"
 
-1750499359 c:\users\nwnis\onedrive\documents\github\ict283\include\date.h
+1753349497 c:\users\nwnis\onedrive\documents\github\ict283\include\date.h
 	<string>
 	<stdexcept>
 
 1750269300 c:\users\nwnis\onedrive\documents\github\ict283\include\time.h
 
-1750498721 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
+1753371759 source:c:\users\nwnis\onedrive\documents\github\ict283\src\date.cpp
 	"Date.h"
 
 1750907146 source:c:\users\nwnis\onedrive\documents\github\ict283\src\main.cpp
@@ -55,23 +55,24 @@
 	"Model.h"
 	"View.h"
 
-1751033273 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
+1753435497 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
 	"Model.h"
+	<chrono>
 
 1750289191 source:c:\users\nwnis\onedrive\documents\github\ict283\src\time.cpp
 	"Time.h"
 
-1750269300 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
+1753270886 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
 	"WeatherRecord.h"
 
-1750502707 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
+1753434898 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
 	"View.h"
 
 1750578891 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
 	"Date.h"
 	<iostream>
 
-1750289284 source:c:\users\nwnis\onedrive\documents\github\ict283\test\weatherrecordtest.cpp
+1753185315 source:c:\users\nwnis\onedrive\documents\github\ict283\test\weatherrecordtest.cpp
 	"WeatherRecord.h"
 	<iostream>
 
@@ -103,15 +104,37 @@
 	"MTime.h"
 	<iostream>
 
-1751032907 c:\users\nwnis\onedrive\documents\github\ict283\include\csvrecord.h
+1753449573 c:\users\nwnis\onedrive\documents\github\ict283\include\csvrecord.h
 	<iostream>
 	<fstream>
 	<string>
 	<sstream>
-	<map>
-	"Vector.h"
+	<stdexcept>
+	"AVL.h"
 	"WeatherRecord.h"
+	"Map.h"
+	"Vector.h"
+	"Utils.h"
 
-1751033268 source:c:\users\nwnis\onedrive\documents\github\ict283\src\csvrecord.cpp
+1753449598 source:c:\users\nwnis\onedrive\documents\github\ict283\src\csvrecord.cpp
 	"CSVRecord.h"
+
+1753428612 source:c:\users\nwnis\onedrive\documents\github\ict283\src\utils.cpp
+	"Utils.h"
+
+1753450186 c:\users\nwnis\onedrive\documents\github\ict283\include\utils.h
+	"Vector.h"
+	<cmath>
+	<iostream>
+	<stdexcept>
+	<string>
+
+1753407245 c:\users\nwnis\onedrive\documents\github\ict283\include\avl.h
+	"bst.h"
+
+1753408209 c:\users\nwnis\onedrive\documents\github\ict283\include\bst.h
+	"Vector.h"
+
+1753410499 c:\users\nwnis\onedrive\documents\github\ict283\include\map.h
+	<map>
 

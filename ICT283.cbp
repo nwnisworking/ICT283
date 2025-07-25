@@ -46,6 +46,12 @@
 		<UnitsGlob directory="test" wildcard="" recursive="0" id="2585997903" addToProject="1">
 			<Option target="Debug" />
 		</UnitsGlob>
+		<Unit filename="include/AVL.h">
+			<Option glob="316380917" />
+		</Unit>
+		<Unit filename="include/BST.h">
+			<Option glob="316380917" />
+		</Unit>
 		<Unit filename="include/CSVRecord.h">
 			<Option glob="316380917" />
 		</Unit>
@@ -58,13 +64,13 @@
 		<Unit filename="include/MTime.h">
 			<Option glob="316380917" />
 		</Unit>
+		<Unit filename="include/Map.h">
+			<Option glob="316380917" />
+		</Unit>
 		<Unit filename="include/Model.h">
 			<Option glob="316380917" />
 		</Unit>
-		<Unit filename="include/SDResult.h">
-			<Option glob="316380917" />
-		</Unit>
-		<Unit filename="include/StandardDeviation.h">
+		<Unit filename="include/Utils.h">
 			<Option glob="316380917" />
 		</Unit>
 		<Unit filename="include/Vector.h">
@@ -112,13 +118,13 @@
 			<Option glob="2585997903" />
 			<Option target="Debug" />
 		</Unit>
-		<Unit filename="test/StandardDeviationTest.cpp">
+		<Unit filename="test/TimeTest.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 			<Option glob="2585997903" />
 			<Option target="Debug" />
 		</Unit>
-		<Unit filename="test/TimeTest.cpp">
+		<Unit filename="test/UtilsTest.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 			<Option glob="2585997903" />
