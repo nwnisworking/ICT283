@@ -5,10 +5,13 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <map>
+#include <stdexcept>
 
-#include "Vector.h"
+#include "AVL.h"
 #include "WeatherRecord.h"
+#include "Map.h"
+#include "Vector.h"
+#include "Utils.h"
 
 using std::string;
 using std::ifstream;
@@ -17,22 +20,27 @@ using std::stringstream;
 using std::runtime_error;
 using std::invalid_argument;
 
-// Define aliases for different weather parameters
-const string WIND_SPEED_ALIAS[] = {"Wind_Speed", "S", ""};
-
-const string SOLAR_RADIATION_ALIAS[] = {"Solar_Rad", "SR", ""};
-
-const string TEMPERATURE_ALIAS[] = {"Ambient_Air_Temperature", "Temperature", "T", ""};
-
 class CSVRecord{
-  public:
-  static void Load(const string& path, Vector<WeatherRecord>& records);
+  private:
+  /**
+   * \brief Wind speed aliases used in the CSV file.
+   */
+  static const string WIND_SPEED_ALIAS[];
 
   /**
-   * \brief Trims leading and trailing whitespace from a string.
-   * \param str The string to be trimmed.
+   * \brief Solar radiation aliases used in the CSV file.
    */
-  static void Trim(string& str);
+  static const string SOLAR_RADIATION_ALIAS[];
+
+  /**
+   * \brief Temperature aliases used in the CSV file.
+   */
+  static const string TEMPERATURE_ALIAS[];
+  public:
+  /**
+   * \brief Load weather records from a CSV file and populate the records map. The earliest and latest years are also retrieved.
+   */
+  static void Load(const string& path, Map<int, AVL<WeatherRecord>>& records, int& earliest_year, int& latest_year);
 
   /**
    * \brief Extracts data from a line and populates the data vector.

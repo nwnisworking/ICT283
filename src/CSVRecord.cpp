@@ -1,36 +1,45 @@
 #include "CSVRecord.h"
 
-void CSVRecord::Load(const string& path, Vector<WeatherRecord>& records){
+const string CSVRecord::WIND_SPEED_ALIAS[] = {"Wind_Speed", "S", ""};
+const string CSVRecord::SOLAR_RADIATION_ALIAS[] = {"Solar_Rad", "SR", ""};
+const string CSVRecord::TEMPERATURE_ALIAS[] = {"Ambient_Air_Temperature", "Temperature", "T", ""};
+
+void CSVRecord::Load(const string& path, Map<int, AVL<WeatherRecord>>& records, int& earliest_year, int& latest_year){
+  // Open the CSV file
   ifstream finput("data/" + path);
   stringstream ss;
   WeatherRecord record;
   string temp_str;
-  Vector<string> headers;
 
+  Vector<string> data;
+
+  // Check if the file is opened successfully
   if(!finput){
     throw runtime_error("Data file not found: data/" + path);
   }
 
+  // Read the header line
   getline(finput, temp_str);
-
   if(temp_str.empty()){
     throw runtime_error("Unable to process header");
   }
 
-  ExtractData(headers, temp_str);
+  ExtractData(data, temp_str);
 
-  int ws_index = FindAlias(headers, WIND_SPEED_ALIAS);
-  int sr_index = FindAlias(headers, SOLAR_RADIATION_ALIAS);
-  int t_index = FindAlias(headers, TEMPERATURE_ALIAS);
+  int ws_index = FindAlias(data, WIND_SPEED_ALIAS);
+  int sr_index = FindAlias(data, SOLAR_RADIATION_ALIAS);
+  int t_index = FindAlias(data, TEMPERATURE_ALIAS);
 
   if(ws_index == -1 || sr_index == -1 || t_index == -1){
     throw runtime_error("Required header not found");
   }
 
-  while(getline(finput, temp_str)){
-    if(temp_str.empty()) continue;
+  data.Clear();
 
-    Vector<string> data;
+  while(getline(finput, temp_str)){
+    if(temp_str.empty()){
+      continue;
+    }
 
     ExtractData(data, temp_str);
 
@@ -45,13 +54,13 @@ void CSVRecord::Load(const string& path, Vector<WeatherRecord>& records){
 
       getline(ss, temp_str, '/');
       record.SetDayOfMonth(stoi(temp_str));
-      
+
       getline(ss, temp_str, '/');
       record.SetMonth(stoi(temp_str));
-      
+
       getline(ss, temp_str, ' ');
       record.SetYear(stoi(temp_str));
-      
+
       getline(ss, temp_str, ':');
       record.SetHours(stoi(temp_str));
 
@@ -111,32 +120,32 @@ void CSVRecord::Load(const string& path, Vector<WeatherRecord>& records){
         record.SetTemperature(-9999);
       }
     }
-  
-    records.Insert(record);
+
+    data.Clear();
+
+    int month_year_value = record.GetMonthYearValue();
+
+    AVL<WeatherRecord>* avl = records.Get(month_year_value);
+
+    if(avl){
+      avl->Insert(record);
+    }
+    else{
+      if(earliest_year == 0 || month_year_value < earliest_year){
+        earliest_year = month_year_value;
+      }
+
+      if(latest_year == 0 || month_year_value > latest_year){
+        latest_year = month_year_value;
+      }
+
+      AVL<WeatherRecord> new_avl;
+      new_avl.Insert(record);
+      records.Insert(record.GetMonthYearValue(), new_avl);
+    }
   }
 
   finput.close();
-}
-
-void CSVRecord::Trim(string& str){
-  int size = str.size();
-  int start = 0;
-  int end = size - 1;
-
-  while(start< size && str[start] == ' '){
-    start++;
-  }
-
-  while(end > start && str[end] == ' '){
-    end--;
-  }
-
-  if(start > end){
-    str = "";
-  }
-  else{
-    str = str.substr(start, end - start + 1);
-  }
 }
 
 void CSVRecord::ExtractData(Vector<string>& data, const string& line){
@@ -145,7 +154,7 @@ void CSVRecord::ExtractData(Vector<string>& data, const string& line){
       string value = line.substr(start, i - start);
       start = i + 1;
 
-      Trim(value);
+      Utils::Trim(value);
       data.Insert(value);
     }
   }
