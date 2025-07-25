@@ -20,40 +20,53 @@ class Controller{
   Controller(View &view, Model &model);
 
   /**
-   * \brief Initializes the Controller.
+   * \brief Initialize the Controller.
    */
   void Init() const;
 
   /**
-   * \brief Gets the wind speed for a specific month and year.
-   * \param result A Result object to store the calculated wind speed data.
-   * \param month The month to search for (1-12).
-   * \param year The year to search for.
+   * \brief Get the wind speed for a specific month and year.
+   * \param date The date for which to retrieve the wind speed.
+   * \param result A Vector to store the wind speed data.
    */
-  void GetWindSpeed(SDResult& result, unsigned month, unsigned year) const;
+  void GetWindSpeed(const Date& date, Vector<float>& result) const;
 
   /**
-   * \brief Gets the temperature for each month of a specific year.
-   * \param result An array of Result objects to store the calculated temperature data for each month.
-   * \param year The year to search for.
+   * \brief Get the temperature for a specific year.
+   * \param date The date for which to retrieve the temperature.
+   * \param result A Vector to store the temperature data.
    */
-  void GetTemperature(Vector<SDResult>& result, unsigned year) const;
+  void GetTemperature(const Date& date, Vector<float>& result) const;
 
   /**
-   * \brief Gets the total solar radiation for each month of a specific year.
-   * \param result An array of Result objects to store the total solar radiation data for each month.
-   * \param year The year to search for.
+   * \brief Get the Pearson Correlation Coefficient (SPCC) for a specific month.
+   * \param date The date for which to retrieve the SPCC.
+   * \param wind_speeds A Vector to store the wind speed data.
+   * \param temperatures A Vector to store the temperature data.
+   * \param solar_radiations A Vector to store the solar radiation data.
    */
-  void GetTotalSolarRadiation(Vector<float>& result, unsigned year) const;
+  void GetSPCC(Date date, Vector<float>& wind_speeds, Vector<float>& temperatures, Vector<float>& solar_radiations) const;
 
   /**
-   * \brief Gets the average and sample deviation of wind speed, ambient air temperature, and the total solar radiation for each month of a specific year.
-   * \param ws_result An array of Result objects to store the average and sample deviation of wind speed data for each month.
-   * \param t_result An array of Result objects to store the average and sample deviation of ambient air temperature data for each month.
-   * \param sr_result An array of Result objects to store the total solar radiation data for each month.
-   * \param year The year to search for.
+   * \brief Save data for a specific year.
+   * \param date The selected date to save data.
+   * \param wind_speed_map A map to store wind speed data indexed by date.
+   * \param temperature_map A map to store temperature data indexed by date.
+   * \param solar_radiation_map A map to store solar radiation data indexed by date.
    */
-  void GetAWSAATAndTST(Vector<SDResult>& ws_result, Vector<SDResult>& t_result, Vector<float>& sr_result, unsigned year) const;
+  void GetDataForYear(Date date, Map<Date, Vector<float>>& wind_speed_map, Map<Date, Vector<float>>& temperature_map, Map<Date, Vector<float>>& solar_radiation_map) const;
+
+  /**
+   * \brief Get the first key in the model.
+   * \return The first key as an integer.
+   */
+  int GetFirstKey() const;
+
+  /**
+   * \brief Get the last key in the model.
+   * \return The last key as an integer.
+   */
+  int GetLastKey() const;
 
   private:
   /**
