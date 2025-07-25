@@ -3,11 +3,17 @@
 
 #include "Vector.h"
 #include <cmath>
+#include <iostream>
 #include <stdexcept>
+#include <string>
 
 using std::sqrt;
 using std::pow;
 using std::abs;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
 
 namespace Utils{
   /**
@@ -55,7 +61,17 @@ namespace Utils{
    * \brief Trim leading and trailing whitespace from a string
    * \param str The string to be trimmed
    */
-  static void Trim(string& str);
+  void Trim(string& str);
+
+  /**
+   * \brief Displays a message to continue.
+   */
+  void Continue();
+
+  /**
+   * \brief Clears the input buffer.
+   */
+  void ClearBuffer();
 };
 
 template <class T>
@@ -131,34 +147,11 @@ T Utils::MeanAbsoluteDeviation(const Vector<T>& vec){
 template <class T>
 T Utils::Sum(const Vector<T>& vec){
   T total = 0;
-  
+
   for(int i = 0; i < vec.GetSize(); i++){
     total += vec[i];
   }
   return total;
 }
-
-
-void Utils::Trim(string& str){
-  int size = str.size();
-  int start = 0;
-  int end = size - 1;
-
-  while(start< size && str[start] == ' '){
-    start++;
-  }
-
-  while(end > start && str[end] == ' '){
-    end--;
-  }
-
-  if(start > end){
-    str = "";
-  }
-  else{
-    str = str.substr(start, end - start + 1);
-  }
-}
-
 
 #endif
