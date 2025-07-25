@@ -6,66 +6,94 @@ WeatherRecord::WeatherRecord(){
   m_temperature = 0.0;
 }
 
-void WeatherRecord::SetSpeed(int speed) {
+void WeatherRecord::SetSpeed(int speed){
   m_speed = speed;
 }
 
-void WeatherRecord::SetRadiation(int radiation) {
+void WeatherRecord::SetRadiation(int radiation){
   m_radiation = radiation;
 }
 
-void WeatherRecord::SetTemperature(float temperature) {
+void WeatherRecord::SetTemperature(float temperature){
   m_temperature = temperature;
 }
 
-void WeatherRecord::SetDayOfMonth(unsigned day_of_month) {
+void WeatherRecord::SetDayOfMonth(unsigned day_of_month){
   m_date.SetDayOfMonth(day_of_month);
 }
 
-void WeatherRecord::SetMonth(unsigned month) {
+void WeatherRecord::SetMonth(unsigned month){
   m_date.SetMonth(month);
 }
 
-void WeatherRecord::SetYear(unsigned year) {
+void WeatherRecord::SetYear(unsigned year){
   m_date.SetYear(year);
 }
 
-void WeatherRecord::SetHours(unsigned hours) {
+void WeatherRecord::SetHours(unsigned hours){
   m_time.SetHours(hours);
 }
 
-void WeatherRecord::SetMinutes(unsigned minutes) {
+void WeatherRecord::SetMinutes(unsigned minutes){
   m_time.SetMinutes(minutes);
 }
 
-int WeatherRecord::GetSpeed() const {
+int WeatherRecord::GetSpeed() const{
   return m_speed;
 }
 
-int WeatherRecord::GetRadiation() const {
+int WeatherRecord::GetRadiation() const{
   return m_radiation;
 }
 
-float WeatherRecord::GetTemperature() const {
+float WeatherRecord::GetTemperature() const{
   return m_temperature;
 }
 
-unsigned WeatherRecord::GetDayOfMonth() const {
+unsigned WeatherRecord::GetDayOfMonth() const{
   return m_date.GetDayOfMonth();
 }
 
-unsigned WeatherRecord::GetMonth() const {
+unsigned WeatherRecord::GetMonth() const{
   return m_date.GetMonth();
 }
 
-unsigned WeatherRecord::GetYear() const {
+unsigned WeatherRecord::GetYear() const{
   return m_date.GetYear();
 }
 
-unsigned WeatherRecord::GetHours() const {
+unsigned WeatherRecord::GetHours() const{
   return m_time.GetHours();
 }
 
-unsigned WeatherRecord::GetMinutes() const {
+unsigned WeatherRecord::GetMinutes() const{
   return m_time.GetMinutes();
+}
+
+int WeatherRecord::GetValue() const{
+  return GetMonthYearValue() + ((GetDayOfMonth() - 1 ) * 24 * 60) + (GetHours() * 60 + GetMinutes());
+}
+
+int WeatherRecord::GetMonthYearValue() const{
+  return ((GetYear() - 1970) * 372 + GetMonth() * 31) * 24 * 60;
+}
+
+bool WeatherRecord::operator <(const WeatherRecord& other) const{
+  return GetValue() < other.GetValue();
+}
+
+bool WeatherRecord::operator ==(const WeatherRecord& other) const{
+  return GetValue() == other.GetValue();
+}
+
+bool WeatherRecord::operator >(const WeatherRecord& other) const{
+  return GetValue() > other.GetValue();
+}
+
+bool WeatherRecord::operator <=(const WeatherRecord& other) const{
+  return GetValue() <= other.GetValue();
+}
+
+bool WeatherRecord::operator >=(const WeatherRecord& other) const{
+  return GetValue() >= other.GetValue();
 }

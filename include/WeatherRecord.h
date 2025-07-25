@@ -111,6 +111,53 @@ class WeatherRecord{
    */
   unsigned GetMinutes() const;
 
+  /**
+   * \brief Gets a unique value representing the date and time of the weather record
+   * \return A unique value calculated from the year, month, day, hours, and minutes
+   */
+  int GetValue() const;
+
+  /**
+   * \brief Gets a unique value representing the month and year of the weather record
+   * \return A unique value calculated from the year and month
+   */
+  int GetMonthYearValue() const;
+
+  /**
+   * \brief Overload less than operator for WeatherRecord comparison.
+   * \param other The other WeatherRecord object to compare with.
+   * \return True if this weather record is less than the other weather record based on date and time.
+   */
+  bool operator <(const WeatherRecord& other) const;
+
+  /**
+   * \brief Overload equality operator for WeatherRecord comparison.
+   * \param other The other WeatherRecord object to compare with.
+   * \return True if this weather record is equal to the other weather record based on date and time.
+   */
+  bool operator ==(const WeatherRecord& other) const;
+
+  /**
+   * \brief Overload greater than operator for WeatherRecord comparison.
+   * \param other The other WeatherRecord object to compare with.
+   * \return True if this weather record is greater than the other weather record based on date and time.
+   */
+  bool operator >(const WeatherRecord& other) const;
+
+  /**
+   * \brief Overload not lesser than or equal operator for WeatherRecord comparison.
+   * \param other The other WeatherRecord object to compare with.
+   * \return True if this weather record is not less than or equal to the other weather record based on date and time.
+   */
+  bool operator <=(const WeatherRecord& other) const;
+
+  /**
+   * \brief Overload not greater than or equal operator for WeatherRecord comparison.
+   * \param other The other WeatherRecord object to compare with.
+   * \return True if this weather record is not greater than or equal to the other weather record based on date and time.
+   */
+  bool operator >=(const WeatherRecord& other) const;
+
   private:
   /**
    * \brief Speed of the wind in m/s
