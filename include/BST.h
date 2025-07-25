@@ -1,7 +1,6 @@
 #ifndef BST_H
 #define BST_H
 
-#include <iostream>
 #include "Vector.h"
 
 /**
@@ -147,18 +146,21 @@ class BST{
   /**
    * \brief Perform an in-order traversal of the BST.
    * \param fn The function to apply to each node's data.
+   * \return A Vector containing the data from the in-order traversal.
    */
   Vector<T> InOrder(bool (*fn)(const T& data)) const;
 
   /**
    * \brief Perform a post-order traversal of the BST.
    * \param fn The function to apply to each node's data.
+   * \return A Vector containing the data from the post-order traversal.
    */
   Vector<T> PostOrder(bool (*fn)(const T& data)) const;
 
   /**
    * \brief Perform a pre-order traversal of the BST.
    * \param fn The function to apply to each node's data.
+   * \return A Vector containing the data from the pre-order traversal.
    */
   Vector<T> PreOrder(bool (*fn)(const T& data)) const;
 

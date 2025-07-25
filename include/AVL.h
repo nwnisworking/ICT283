@@ -1,10 +1,6 @@
 #ifndef AVL_H
 #define AVL_H
 
-#include <iostream>
-
-using std::cout;
-using std::endl;
 #include "bst.h"
 
 /**
