@@ -2,7 +2,6 @@
 #define MAP_H
 
 #include <map>
-#include <iostream>
 
 using std::map;
 

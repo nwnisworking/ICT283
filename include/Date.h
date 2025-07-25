@@ -61,16 +61,45 @@ class Date{
    */
   unsigned GetDayOfMonth() const;
 
+  /**
+   * \brief Get the vaue of the date as an integer.
+   * \return The value of the date as an integer.
+   */
   int GetValue() const;
 
+  /**
+   * \brief Overload less than operator for Date comparison.
+   * \param other The other Date object to compare with.
+   * \return True if this date is less than the other date.
+   */
   bool operator <(const Date& other) const;
 
+  /**
+   * \brief Overload greater than operator for Date comparison.
+   * \param other The other Date object to compare with.
+   * \return True if this date is greater than the other date.
+   */
   bool operator >(const Date& other) const;
 
+  /**
+   * \brief Overload equality operator for Date comparison.
+   * \param other The other Date object to compare with.
+   * \return True if both dates are equal.
+   */
   bool operator ==(const Date& other) const;
 
+  /**
+   * \brief Overload not lesser than or equal operator for Date comparison.
+   * \param other The other Date object to compare with.
+   * \return True if both dates are not equal.
+   */
   bool operator <=(const Date& other) const;
 
+  /**
+   * \brief Overload greater than or equal operator for Date comparison.
+   * \param other The other Date object to compare with.
+   * \return True if this date is greater than or equal to the other date.
+   */
   bool operator >=(const Date& other) const;
 
   /**
