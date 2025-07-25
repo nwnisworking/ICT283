@@ -35,21 +35,28 @@ namespace Utils{
   template <class T>
   T PearsonCorrelation(const Vector<T>& vec1, const Vector<T>& vec2);
 
+  /**
+   * \brief Calculate the mean absolute deviation of a vector
+   * \param vec Vector containing the data
+   * \return Mean absolute deviation of the data in the vector
+   */
   template <class T>
   T MeanAbsoluteDeviation(const Vector<T>& vec);
 
+  /**
+   * \brief Calculate the sum of a vector
+   * \param vec Vector containing the data
+   * \return Sum of the data in the vector
+   */
   template <class T>
-  T Sum(const Vector<T>& vec){
-    T total = 0;
-    
-    for(int i = 0; i < vec.GetSize(); i++){
-      total += vec[i];
-    }
-    return total;
-  }
-};
+  T Sum(const Vector<T>& vec);
 
-#include "Utils.h"
+  /**
+   * \brief Trim leading and trailing whitespace from a string
+   * \param str The string to be trimmed
+   */
+  static void Trim(string& str);
+};
 
 template <class T>
 T Utils::Mean(const Vector<T>& vec){
@@ -120,5 +127,38 @@ T Utils::MeanAbsoluteDeviation(const Vector<T>& vec){
 
   return deviation / vec.GetSize();
 }
+
+template <class T>
+T Utils::Sum(const Vector<T>& vec){
+  T total = 0;
+  
+  for(int i = 0; i < vec.GetSize(); i++){
+    total += vec[i];
+  }
+  return total;
+}
+
+
+void Utils::Trim(string& str){
+  int size = str.size();
+  int start = 0;
+  int end = size - 1;
+
+  while(start< size && str[start] == ' '){
+    start++;
+  }
+
+  while(end > start && str[end] == ' '){
+    end--;
+  }
+
+  if(start > end){
+    str = "";
+  }
+  else{
+    str = str.substr(start, end - start + 1);
+  }
+}
+
 
 #endif
