@@ -8,8 +8,10 @@
 #include <stdexcept>
 
 #include "Controller.h"
-#include "StandardDeviation.h"
 #include "Date.h"
+#include "Utils.h"
+#include "AVL.h"
+#include "WeatherRecord.h"
 
 using std::string;
 using std::cout;
@@ -39,34 +41,24 @@ class View{
 
   private:
   /**
-   * \brief Displays a message to continue.
+   * \brief Display the wind speed for a specific year and month.
    */
-  void Continue() const;
+  void WindSpeedPage() const;
 
   /**
-   * \brief Clears the input buffer.
+   * \brief Display air temperature for a specific year.
    */
-  void ClearBuffer() const;
+  void AirTemperaturePage() const;
 
   /**
-   * \brief Displays the average wind speed and sample standard deviation for a specific month and year.
+   * \brief Display Sigmoid Pearson Correlation Coefficient for the year.
    */
-  void AvgWindSpeedAndDeviationForMonthAndYear() const;
+  void SPCCPage() const;
 
   /**
-   * \brief Displays the average ambient air temperature and sample standard deviation for each month of a specific year.
+   * \brief Save data of the wind speed, air temperature, and solar radiation alongside average, sample deviation, and mean absolute deviation.
    */
-  void AvgAmbientAirTemperatureAndDeviationForYear() const;
-
-  /**
-   * \brief Displays the total solar radiation in kWh/m2 for each month of a specific year.
-   */
-  void TotalSolarRadiationForYear() const;
-
-  /**
-   * \brief Displays the Average Wind Speed, Air Ambient Temperature, and the Total Solar Radiation for each month of a specific year
-   */
-  void AWSAATAndTSR() const;
+  void SaveDataForYear() const;
 
   /**
    * \brief Gets the input month from the user.

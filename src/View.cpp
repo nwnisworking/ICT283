@@ -11,25 +11,25 @@ void View::Render() const{
     cout << "Murdoch University Weather Station" << endl << endl;
     cout << "1. Average and Sample Deviation Wind Speed for a Specific Month and Year" << endl;
     cout << "2. Average and Sample Deviation Ambient Air Temperature for each Month of a specific Year" << endl;
-    cout << "3. Total Solar Radiation in kWh/m2 for each Month of a specific Year" << endl;
+    cout << "3. Get Sample Pearson Correlation Coefficient" << endl;
     cout << "4. Average Wind Speed(SD), Average Ambient Air Temperature(SD), Total Solar Radiation" << endl;
     cout << "5. Exit" << endl;
     cout << "Please select an option: ";
     cin >> option;
 
-    ClearBuffer();
+    Utils::ClearBuffer();
 
     if(option == "1"){
-      AvgWindSpeedAndDeviationForMonthAndYear();
+      WindSpeedPage();
     }
     else if(option == "2"){
-      AvgAmbientAirTemperatureAndDeviationForYear();
+      AirTemperaturePage();
     }
     else if(option == "3"){
-      TotalSolarRadiationForYear();
+        SPCCPage();
     }
     else if(option == "4"){
-      AWSAATAndTSR();
+        SaveDataForYear();
     }
     else if(option == "5"){
       return;
@@ -40,160 +40,152 @@ void View::Render() const{
   }
 }
 
-void View::AvgWindSpeedAndDeviationForMonthAndYear() const{
-  unsigned month, year;
-  SDResult result;
+void View::WindSpeedPage() const{
+  Date date;
+  Vector<float> result(12);
 
   cout << endl << "Average and Sample Standard Deviation for Wind Speed" << endl;
 
-  month = InputMonth();
-  year = InputYear();
+  date.SetMonth(InputMonth());
+  date.SetYear(InputYear());
 
-  m_controller->GetWindSpeed(result, month, year);
+  m_controller->GetWindSpeed(date, result);
 
-  cout << endl << Date::Date::MonthToString(month) << " " << year << ": ";
+  cout << endl << Date::MonthToString(date.GetMonth()) << ' ' << date.GetYear() << ": ";
 
-  if(result.size == 0){
-    cout << "No Data";
+  if(result.GetSize() == 0){
+    cout << "No data" << endl;
   }
   else{
-    cout << endl << "Average wind speed: " << fixed << setprecision(1) << result.average << " km/h";
-    cout << endl << "Sample stdev: " << fixed << setprecision(1) << result.sample;
+    cout << endl;
+    cout << "Average speed: " << fixed << setprecision(1) << Utils::Mean(result) << " km/h" << endl;
+    cout << "Sample stdev: " << fixed << setprecision(1) << Utils::Sample(result) << endl;
   }
 
-  cout << endl;
-
-  Continue();
+  Utils::Continue();
 }
 
-void View::AvgAmbientAirTemperatureAndDeviationForYear() const{
-  unsigned year;
-  Vector<SDResult> result(12); // Array to hold results for each month
-
-  year = InputYear();
-
-  m_controller->GetTemperature(result, year);
-
-  cout << endl << "Average and Sample Standard Deviation for Ambient Air Temperature for each Month of a specific Year" << endl;
-  cout << endl << year;
-
-  for(unsigned i = 0; i < 12; i++){
-    cout << endl << Date::MonthToString(i + 1) << ": ";
-
-    // If no data for the month, print "No Data"
-    if(result[i].size == 0){
-      cout << "No Data";
-    }
-    else{
-      cout << "average: " << fixed << setprecision(1) << result[i].average << " degrees C, ";
-      cout << "stdev: " << fixed << setprecision(1) << result[i].sample;
-    }
-  }
-
-  cout << endl;
-
-  Continue();
-}
-
-void View::TotalSolarRadiationForYear() const{
-  unsigned year;
+void View::AirTemperaturePage() const{
+  Date date;
   Vector<float> result;
 
-  cout << endl << "Total Solar Radiation in kWh/m2 for each Month of a specific Year" << endl;
-  year = InputYear();
+  date.SetYear(InputYear());
 
-  m_controller->GetTotalSolarRadiation(result, year);
+  cout << endl << "Average and Sample Standard Deviation for Ambient Air Temperature for each Month of a specific Year" << endl;
+  cout << endl << date.GetYear() << endl;
 
-  for(unsigned i = 0; i < 12; i++){
-    cout << endl << Date::MonthToString(i + 1) << ": ";
+  for(int i = 0; i < 12; i++){
+    date.SetMonth(i + 1);
+    m_controller->GetTemperature(date, result);
 
-    if(result[i] == 0){
-      cout << "No Data";
+    cout << Date::MonthToString(i + 1) << ": ";
+
+    if(result.GetSize() == 0){
+      cout << " No data" << endl;
     }
     else{
-      cout << fixed << setprecision(1) << result[i] << " kWh/m2";
+      cout << "average: " << fixed << setprecision(1) << Utils::Mean(result) << " degrees C, ";
+      cout << "stdev: " << fixed << setprecision(1) << Utils::Sample(result) << endl;
     }
+
+    result.Clear();
   }
 
-  cout << endl;
-
-  Continue();
+  Utils::Continue();
 }
 
-void View::AWSAATAndTSR() const{
-  unsigned year;
-  Vector<SDResult> ws_result(12);
-  Vector<SDResult> t_result(12);
-  Vector<float> sr_result(12);
+void View::SPCCPage() const{
+  Vector<float> wind_speeds;
+  Vector<float> temperatures;
+  Vector<float> solar_radiations;
+  Date date;
+
+  date.SetMonth(InputMonth());
+  m_controller->GetSPCC(date, wind_speeds, temperatures, solar_radiations);
+
+  cout << endl << "Sample Pearson Correlation Coefficient for " << Date::MonthToString(date.GetMonth()) << endl;
+
+  // The last character denotes l for left and r for right
+  Vector<float> S_T_L, S_T_R;
+  Vector<float> S_R_L, S_R_R;
+  Vector<float> T_R_L, T_R_R;
+  int result_size = wind_speeds.GetSize();
+
+  if(temperatures.GetSize() != result_size || solar_radiations.GetSize() != result_size){
+    cout << "Data size mismatch. Cannot calculate SPCC." << endl;
+    Utils::Continue();
+    return;
+  }
+
+  for(int i = 0; i < result_size; i++){
+    if(solar_radiations[i] >= 100){
+      S_R_L.Insert(wind_speeds[i]);
+      S_R_R.Insert(solar_radiations[i]);
+      T_R_L.Insert(temperatures[i]);
+      T_R_R.Insert(solar_radiations[i]);
+    }
+
+    S_T_L.Insert(wind_speeds[i]);
+    S_T_R.Insert(temperatures[i]);
+  }
+
+  cout << "Wind Speed and Radiation: " << Utils::PearsonCorrelation(S_R_L, S_R_R) << endl;
+  cout << "Wind Speed and Temperature: " << Utils::PearsonCorrelation(S_T_L, S_T_R) << endl;
+  cout << "Temperature and Radiation: " << Utils::PearsonCorrelation(T_R_L, T_R_R) << endl;
+
+  Utils::Continue();
+}
+
+void View::SaveDataForYear() const{
+  Date date;
+  Map<Date, Vector<float>> wind_speed_map;
+  Map<Date, Vector<float>> temperature_map;
+  Map<Date, Vector<float>> solar_radiation_map;
   ofstream out_file("data/WindTempSolar.csv");
+  int fail_count = 0;
 
-  cout << endl << "Average Wind Speed(SD), Air Ambient Temperature(SD), and Total Solar Radiation for specific year" << endl << endl;
+  date.SetYear(InputYear());
 
-  year = InputYear();
+  cout << endl << "Saving data for year: " << date.GetYear() << endl;
+  m_controller->GetDataForYear(date, wind_speed_map, temperature_map, solar_radiation_map);
 
-  cout << endl;
+  out_file << date.GetYear() << endl;
 
-  m_controller->GetAWSAATAndTST(ws_result, t_result, sr_result, year);
-
-  out_file << year << endl;
-
-  bool has_data = false; // Flag to check if there is any data for the year
-
-  for(unsigned i = 0; i < 12; i++){
-    // No data for this month. Ignore the data
-    if(ws_result[i].size == 0 && t_result[i].size == 0 && sr_result[i] == 0){
+  for(int i = 0; i < 12; i++){
+      date.SetMonth(i+1);
+    if(!wind_speed_map.Search(date) || !temperature_map.Search(date) || !solar_radiation_map.Search(date)){
+      fail_count++;
       continue;
     }
-    else{
-      has_data = true;
+
+    Vector<float> wind_speeds = *wind_speed_map.Get(date);
+    Vector<float> temperatures = *temperature_map.Get(date);
+    Vector<float> solar_radiations = *solar_radiation_map.Get(date);
+
+    if(wind_speeds.GetSize() == 0 || temperatures.GetSize() == 0 || solar_radiations.GetSize() == 0){
+      fail_count++;
+      continue;
     }
 
-    out_file << Date::MonthToString(i + 1) << ",";
+    out_file << Date::MonthToString(i + 1) << ", ";
+    out_file << fixed << setprecision(1) << Utils::Mean(wind_speeds) << '(';
+    out_file << fixed << setprecision(1) << Utils::Sample(wind_speeds) << ", ";
+    out_file << fixed << setprecision(1) << Utils::MeanAbsoluteDeviation(wind_speeds) << "), ";
 
-    if(ws_result[i].size != 0){
-      out_file << fixed << setprecision(1) << ws_result[i].average << "(" << fixed << setprecision(1) << ws_result[i].sample << ")";
-    }
+    out_file << fixed << setprecision(1) << Utils::Mean(temperatures) << '(';
+    out_file << fixed << setprecision(1) << Utils::Sample(temperatures) << ", ";
+    out_file << fixed << setprecision(1) << Utils::MeanAbsoluteDeviation(temperatures) << "), ";
 
-    out_file << ",";
-
-    if(t_result[i].size != 0){
-      out_file << fixed << setprecision(1) << t_result[i].average << "(" << fixed << setprecision(1) << t_result[i].sample << ")";
-    }
-
-    out_file << ",";
-
-    if(sr_result[i] != 0){
-      out_file << fixed << setprecision(1) << sr_result[i];
-    }
-
-    out_file << endl;
+    out_file << fixed << setprecision(1) << Utils::Sum(solar_radiations) << endl;
   }
 
-  if(!has_data){
+  if(fail_count == 12){
     out_file << "No Data" << endl;
-    cout << "No data available for the specified year." << endl;
-  }
-  else{
-    cout << "Data for " << year << " has been saved to data/WindTempSolar.csv" << endl;
   }
 
   out_file.close();
 
-  Continue();
-}
-
-void View::Continue() const{
-  cout << endl << "Press Enter to continue...";
-  ClearBuffer();
-  cout << endl;
-}
-
-void View::ClearBuffer() const{
-  if(cin.fail()){
-    cin.clear();
-  }
-  // Clear leftover characters in the input buffer
-  while(cin.get() != '\n');
+  Utils::Continue();
 }
 
 unsigned View::InputMonth() const{
@@ -212,7 +204,7 @@ unsigned View::InputMonth() const{
       }
     }
 
-    ClearBuffer();
+    Utils::ClearBuffer();
 
     if(is_valid){
       // Catch out of range exception in case it breaks the range of unsigned int
@@ -256,7 +248,7 @@ unsigned View::InputYear() const{
       }
     }
 
-    ClearBuffer();
+    Utils::ClearBuffer();
 
     if(is_valid){
       // Catch for out of range exception in case it breaks the range of unsigned int
