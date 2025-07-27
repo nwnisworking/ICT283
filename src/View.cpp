@@ -129,6 +129,8 @@ void View::SPCCPage() const{
     S_T_R.Insert(temperatures[i]);
   }
 
+  cout.precision(6);
+
   cout << "Wind Speed and Radiation: " << Utils::PearsonCorrelation(S_R_L, S_R_R) << endl;
   cout << "Wind Speed and Temperature: " << Utils::PearsonCorrelation(S_T_L, S_T_R) << endl;
   cout << "Temperature and Radiation: " << Utils::PearsonCorrelation(T_R_L, T_R_R) << endl;
