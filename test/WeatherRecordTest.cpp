@@ -8,12 +8,15 @@ using std::endl;
 // Forward declarations of test functions
 void Test1();
 void Test2();
+void Test3();
 
 int main() {
   cout << "Weather Record Test Program" << endl << endl;
   Test1();
   cout << endl;
   Test2();
+  cout << endl;
+  Test3();
   cout << endl;
   cout << "All tests completed." << endl;
   cout << endl;
@@ -45,7 +48,7 @@ void Test2() {
   record.SetHours(14);
   record.SetMinutes(30);
 
-  cout << "Setters Test" << endl;
+  cout << "Setters / Getters Test" << endl;
   cout << "Date: " << record.GetDayOfMonth() << "/"
        << record.GetMonth() << "/" << record.GetYear()
        << ", Temperature: " << record.GetTemperature()
