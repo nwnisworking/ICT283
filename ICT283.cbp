@@ -97,6 +97,9 @@
 		<Unit filename="src/Model.cpp">
 			<Option glob="2178398971" />
 		</Unit>
+		<Unit filename="src/Utils.cpp">
+			<Option glob="2178398971" />
+		</Unit>
 		<Unit filename="src/View.cpp">
 			<Option glob="2178398971" />
 		</Unit>
@@ -113,6 +116,12 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="test/DateTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test/MapTest.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 			<Option glob="2585997903" />
