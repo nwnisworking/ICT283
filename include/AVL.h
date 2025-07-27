@@ -60,6 +60,11 @@ class AVL : public BST<T>{
    */
   int GetFactor(const Node<T>* node) const;
 
+  /**
+   * \brief Get the height of a node.
+   * \param node The node to check.
+   * \return The height of the node, or -1 if the node is null.
+   */
   static int GetHeight(const Node<T>* node);
   public:
   // Due to name hiding, we need to explicitly use the base class methods to access them.

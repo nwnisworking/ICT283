@@ -48,26 +48,20 @@ class Controller{
   void GetSPCC(Date date, Vector<float>& wind_speeds, Vector<float>& temperatures, Vector<float>& solar_radiations) const;
 
   /**
-   * \brief Save data for a specific year.
+   * \brief Get the data for a specific year.
    * \param date The selected date to save data.
    * \param wind_speed_map A map to store wind speed data indexed by date.
    * \param temperature_map A map to store temperature data indexed by date.
    * \param solar_radiation_map A map to store solar radiation data indexed by date.
    */
   void GetDataForYear(Date date, Map<Date, Vector<float>>& wind_speed_map, Map<Date, Vector<float>>& temperature_map, Map<Date, Vector<float>>& solar_radiation_map) const;
-
+  
   /**
-   * \brief Get the first key in the model.
-   * \return The first key as an integer.
+   * \brief Collect valid data from the weather records.
+   * \param record The weather record to check.
+   * \return A predicate method to determine if the record is valid.
    */
-  int GetFirstKey() const;
-
-  /**
-   * \brief Get the last key in the model.
-   * \return The last key as an integer.
-   */
-  int GetLastKey() const;
-
+  static bool CollectValidData(const WeatherRecord& record);
   private:
   /**
    * \brief Handles rendering of the view.

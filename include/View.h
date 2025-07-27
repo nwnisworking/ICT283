@@ -51,7 +51,7 @@ class View{
   void AirTemperaturePage() const;
 
   /**
-   * \brief Display Sigmoid Pearson Correlation Coefficient for the year.
+   * \brief Display Sample Pearson Correlation Coefficient.
    */
   void SPCCPage() const;
 

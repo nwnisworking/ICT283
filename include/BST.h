@@ -46,7 +46,7 @@ class BST{
   /**
    * \brief The root node of the BST.
    */
-  Node<T>* root;
+  Node<T>* m_root;
 
   /**
    * \brief Search for a node with the given data.
@@ -111,7 +111,7 @@ class BST{
   /**
    * \brief Constructor to initialize an empty BST.
    */
-  BST() : root(nullptr){}
+  BST() : m_root(nullptr){}
 
   /**
    * \brief Copy constructor to create a new BST from another.
@@ -183,7 +183,7 @@ class BST{
 
 template <class T>
 BST<T>::BST(const BST<T>& other){
-  root = Copy(other.root);
+  m_root = Copy(other.m_root);
 }
 
 template <class T>
@@ -193,7 +193,7 @@ BST<T>::~BST(){
 
 template <class T>
 bool BST<T>::IsEmpty() const{
-  return root == nullptr;
+  return m_root == nullptr;
 }
 
 template <class T>
@@ -311,23 +311,23 @@ void BST<T>::DestroyTree(Node<T>* node){
 
 template <class T>
 void BST<T>::Insert(const T& data){
-  root = Insert(root, data);
+  m_root = Insert(m_root, data);
 }
 
 template <class T>
 bool BST<T>::Search(const T& data){
-  return Search(root, data);
+  return Search(m_root, data);
 }
 
 template <class T>
 void BST<T>::DeleteNode(const T& data){
-  root = DeleteNode(root, data);
+  m_root = DeleteNode(m_root, data);
 }
 
 template <class T>
 Vector<T> BST<T>::InOrder(bool (*fn)(const T& data)) const{
   Vector<T> data;
-  InOrder(root, fn, data);
+  InOrder(m_root, fn, data);
 
   return data;
 }
@@ -335,7 +335,7 @@ Vector<T> BST<T>::InOrder(bool (*fn)(const T& data)) const{
 template <class T>
 Vector<T> BST<T>::PostOrder(bool (*fn)(const T& data)) const{
   Vector<T> data;
-  PostOrder(root, fn, data);
+  PostOrder(m_root, fn, data);
 
   return data;
 }
@@ -343,15 +343,15 @@ Vector<T> BST<T>::PostOrder(bool (*fn)(const T& data)) const{
 template <class T>
 Vector<T> BST<T>::PreOrder(bool (*fn)(const T& data)) const{
   Vector<T> data;
-  PreOrder(root, fn, data);
+  PreOrder(m_root, fn, data);
 
   return data;
 }
 
 template <class T>
 void BST<T>::DestroyTree(){
-  DestroyTree(root);
-  root = nullptr;
+  DestroyTree(m_root);
+  m_root = nullptr;
 }
 
 template <class T>
@@ -370,7 +370,7 @@ template <class T>
 BST<T>& BST<T>::operator =(const BST<T>& other){
   if(this != &other){
     DestroyTree();
-    root = Copy(other.root);
+    m_root = Copy(other.m_root);
   }
 
   return *this;

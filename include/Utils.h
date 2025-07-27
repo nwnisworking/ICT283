@@ -15,6 +15,10 @@ using std::cout;
 using std::endl;
 using std::string;
 
+/**
+ * \brief Utility methods for handling misc activities.
+ */
+
 namespace Utils{
   /**
    * \brief Calculate the mean of a vector
