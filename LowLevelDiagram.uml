@@ -60,7 +60,7 @@
 <XPD:ATTR name="Left" type="integer">72</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">72</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">674</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">173</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">147</XPD:ATTR>
 <XPD:REF name="Model">Fz1QVLgHoUulRnMpts4TxwAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="B/SMF0HZC0ShPun0YZkf0QAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="ufRMPdn8PEWhJefaK+wrCAAA">
@@ -445,7 +445,7 @@
 <XPD:REF name="Views[1]">Q3eVW0EiIke4RRKLZ7r69wAA</XPD:REF>
 <XPD:REF name="Views[2]">rGH8S/QO/0uInYH2NE3hkQAA</XPD:REF>
 <XPD:REF name="Views[3]">XQaQT5k8sUaY/oQBzQ43SgAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">8</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">6</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="pTtvFNHY/kqTPOvZMBmO4AAA">
 <XPD:ATTR name="Name" type="string">Controller</XPD:ATTR>
 <XPD:REF name="Owner">Fz1QVLgHoUulRnMpts4TxwAA</XPD:REF>
@@ -571,26 +571,6 @@
 <XPD:OBJ name="Parameters[6]" type="UMLParameter" guid="UZ3P9+ZkVU+7nPyrH+ER7AAA">
 <XPD:ATTR name="Name" type="string">Vector&lt;float&gt;&gt;&amp;</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">/eNntSxpRUmrio2foQaf/wAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[6]" type="UMLOperation" guid="V+qxMg/aq0qwAKwV2wQw8wAA">
-<XPD:ATTR name="Name" type="string">GetFirstKey</XPD:ATTR>
-<XPD:REF name="Owner">Fz1QVLgHoUulRnMpts4TxwAA</XPD:REF>
-<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="zadWsdo48kCN1YC+kcGfzAAA">
-<XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
-<XPD:REF name="BehavioralFeature">V+qxMg/aq0qwAKwV2wQw8wAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[7]" type="UMLOperation" guid="uWUg7kPd3kmHnLfwWWPzDgAA">
-<XPD:ATTR name="Name" type="string">GetLastKey</XPD:ATTR>
-<XPD:REF name="Owner">Fz1QVLgHoUulRnMpts4TxwAA</XPD:REF>
-<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="a1GpwCCqzU+0IbUzS+EQdgAA">
-<XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
-<XPD:REF name="BehavioralFeature">uWUg7kPd3kmHnLfwWWPzDgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:ATTR name="#Attributes" type="integer">2</XPD:ATTR>
@@ -818,11 +798,10 @@
 </XPD:OBJ>
 <XPD:ATTR name="#TypedFeatures" type="integer">1</XPD:ATTR>
 <XPD:REF name="TypedFeatures[0]">Miqhu0/Q/0eqhMtQuCpCzwAA</XPD:REF>
-<XPD:ATTR name="#TypedParameters" type="integer">4</XPD:ATTR>
+<XPD:ATTR name="#TypedParameters" type="integer">3</XPD:ATTR>
 <XPD:REF name="TypedParameters[0]">Nwg8p9/hfEOY0BbOPr9mFwAA</XPD:REF>
-<XPD:REF name="TypedParameters[1]" pathname="date">N6crNuyll0qh9AvQPnH4XgAA</XPD:REF>
-<XPD:REF name="TypedParameters[2]">a589/mpXgkqBtDg46YlxmgAA</XPD:REF>
-<XPD:REF name="TypedParameters[3]">zlqxRVUCcUGKXj2dDShUTwAA</XPD:REF>
+<XPD:REF name="TypedParameters[1]">a589/mpXgkqBtDg46YlxmgAA</XPD:REF>
+<XPD:REF name="TypedParameters[2]">zlqxRVUCcUGKXj2dDShUTwAA</XPD:REF>
 <XPD:ATTR name="#Attributes" type="integer">3</XPD:ATTR>
 <XPD:OBJ name="Attributes[0]" type="UMLAttribute" guid="b0ky3YJpVkqi2Mmu+9C+xAAA">
 <XPD:ATTR name="Name" type="string">m_day_of_month</XPD:ATTR>
