@@ -1,0 +1,50 @@
+GitHub link for my assignment 2 progression:
+https://github.com/nwnisworking/ict283/tree/assignment-2
+
+What works:
+Columns with different naming conventions are registered:
+- S or Wind_Speed (Case-sensitive)
+- SR or Solar_Rad (Case-sensitive)
+- T, Temperature, Ambient_Air_Temperature (Case-sensitive)
+- Multiple files
+- BST with AVL for rebalancing
+
+Column with invalid values are handled:
+- Offline, N/A, or NaN
+- Wind speed with negative value
+- Solar radiation that is less than 0 or more than 1500
+- Air Ambient Temperature that is less than -100 or more than 100
+
+
+The Vector class dynamically manages data of various types using std::vector, making Vector a wrapper class.
+
+The Map class stores key-value pairs using std::map, making Map a wrapper class.
+
+The deletion of the StandardDeviation class means Utils - a namespace for utility methods - was developed to address the issue. It also includes calculations for the Sample Pearson Correlation Coefficient, Mean Absolute Deviation, and Sum methods. Trim (previously from the CSVRecord class), Continue, and ClearBuffer methods (previously from the View class) are also moved.
+
+
+The program writes the output to WindTempSolar.csv
+
+The program loads and parses CSV data files, including validating and handling invalid entries.
+
+What does not work:
+
+Date containing leap years
+
+Summary of the test
+Unit test:
+- Date
+- MTime
+- Vector
+- Map
+- BST
+
+Integration test:
+- WeatherRecord
+
+Application test:
+ - Model
+ - View
+ - Controller
+
+Because AVL class inherits from BST class, three of the methods - namely Copy, Insert, and DeletNode methods are overridden. The methods Balance, RotateLeft, RotateRight, GetFactor, and GetHeight, on the other hand, are private and thus inaccessible from external use, resulting in a lack of a dedicated testing plan for them.
