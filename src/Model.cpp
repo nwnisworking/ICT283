@@ -27,5 +27,5 @@ int Model::GetLastKey(){
 }
 
 const AVL<WeatherRecord>* Model::Get(const Date& date) const{
-  return m_weather_records.Get(((date.GetYear() - 1970) * 372 + date.GetMonth() * 31) * 24 * 60);
+  return m_weather_records.Get(((date.GetYear() - 1970) * 372 + date.GetMonth() * 31));
 }

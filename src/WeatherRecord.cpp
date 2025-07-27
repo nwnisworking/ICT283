@@ -71,11 +71,11 @@ unsigned WeatherRecord::GetMinutes() const{
 }
 
 int WeatherRecord::GetValue() const{
-  return GetMonthYearValue() + ((GetDayOfMonth() - 1 ) * 24 * 60) + (GetHours() * 60 + GetMinutes());
+  return ((GetMonthYearValue() + (GetDayOfMonth() - 1)) * 24 * 60) + (GetHours() * 60 + GetMinutes());
 }
 
 int WeatherRecord::GetMonthYearValue() const{
-  return ((GetYear() - 1970) * 372 + GetMonth() * 31) * 24 * 60;
+  return ((GetYear() - 1970) * 372 + GetMonth() * 31);
 }
 
 bool WeatherRecord::operator <(const WeatherRecord& other) const{

@@ -41,8 +41,8 @@ void Controller::GetTemperature(const Date& date, Vector<float>& result) const{
 }
 
 void Controller::GetSPCC(Date date, Vector<float>& wind_speeds, Vector<float>& temperatures, Vector<float>& solar_radiations) const{
-  int i = m_model.GetFirstKey() / (24 * 60) / 372 + 1970;
-  int size = m_model.GetLastKey() / (24 * 60) / 372 + 1970;
+  int i = m_model.GetFirstKey() / 372 + 1970;
+  int size = m_model.GetLastKey() / 372 + 1970;
 
   const AVL<WeatherRecord>* tree = nullptr;
 
@@ -55,12 +55,7 @@ void Controller::GetSPCC(Date date, Vector<float>& wind_speeds, Vector<float>& t
       continue;
     }
 
-    Vector<WeatherRecord> data = tree->InOrder([](const WeatherRecord& record){
-      return
-        record.GetSpeed() != -9999 &&
-        record.GetTemperature() != -9999 &&
-        record.GetRadiation() != -9999;
-    });
+    Vector<WeatherRecord> data = tree->InOrder(CollectValidData);
 
     for(int i = 0; i < data.GetSize(); i++){
       wind_speeds.Insert(data[i].GetSpeed() * 3.6);
@@ -85,12 +80,7 @@ void Controller::GetDataForYear(Date date, Map<Date, Vector<float>>& wind_speed_
       continue;
     }
 
-    Vector<WeatherRecord> data = tree->InOrder([](const WeatherRecord& record){
-      return
-        record.GetSpeed() != -9999 &&
-        record.GetTemperature() != -9999 &&
-        record.GetRadiation() != -9999;
-    });
+    Vector<WeatherRecord> data = tree->InOrder(CollectValidData);
 
     for(int i = 0; i < data.GetSize(); i++){
       wind_speeds.Insert(data[i].GetSpeed() * 3.6);
@@ -111,10 +101,8 @@ void Controller::GetDataForYear(Date date, Map<Date, Vector<float>>& wind_speed_
   }
 }
 
-int Controller::GetFirstKey() const{
-  return m_model.GetFirstKey();
-}
-
-int Controller::GetLastKey() const{
-  return m_model.GetLastKey();
+bool Controller::CollectValidData(const WeatherRecord& record){
+  return record.GetSpeed() != -9999 &&
+         record.GetTemperature() != -9999 &&
+         record.GetRadiation() != -9999;
 }

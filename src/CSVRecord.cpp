@@ -141,7 +141,7 @@ void CSVRecord::Load(const string& path, Map<int, AVL<WeatherRecord>>& records, 
 
       AVL<WeatherRecord> new_avl;
       new_avl.Insert(record);
-      records.Insert(record.GetMonthYearValue(), new_avl);
+      records.Insert(month_year_value, new_avl);
     }
   }
 
