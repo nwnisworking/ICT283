@@ -6,3 +6,4 @@ html/**
 cppcheck.txt
 CppCheckResults.xml
 doc/**
+executable/**
