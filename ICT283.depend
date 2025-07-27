@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1753450152 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
+1753626891 source:c:\users\nwnis\onedrive\documents\github\ict283\src\controller.cpp
 	"Controller.h"
 
-1753409144 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
+1753626907 c:\users\nwnis\onedrive\documents\github\ict283\include\controller.h
 	"View.h"
 	"Model.h"
 
-1753428158 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
+1753606073 c:\users\nwnis\onedrive\documents\github\ict283\include\view.h
 	<string>
 	<iostream>
 	<iomanip>
@@ -22,7 +22,7 @@
 	<cmath>
 	"Vector.h"
 
-1753271908 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
+1753606109 c:\users\nwnis\onedrive\documents\github\ict283\include\vector.h
 	<stdexcept>
 	<vector>
 
@@ -36,7 +36,7 @@
 	"Map.h"
 	"CSVRecord.h"
 
-1753349797 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
+1753617983 c:\users\nwnis\onedrive\documents\github\ict283\include\weatherrecord.h
 	"Date.h"
 	"MTime.h"
 
@@ -55,23 +55,23 @@
 	"Model.h"
 	"View.h"
 
-1753450549 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
+1753609082 source:c:\users\nwnis\onedrive\documents\github\ict283\src\model.cpp
 	"Model.h"
 
 1750289191 source:c:\users\nwnis\onedrive\documents\github\ict283\src\time.cpp
 	"Time.h"
 
-1753270886 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
+1753618027 source:c:\users\nwnis\onedrive\documents\github\ict283\src\weatherrecord.cpp
 	"WeatherRecord.h"
 
-1753450073 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
+1753594040 source:c:\users\nwnis\onedrive\documents\github\ict283\src\view.cpp
 	"View.h"
 
-1753516586 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
+1753516848 source:c:\users\nwnis\onedrive\documents\github\ict283\test\datetest.cpp
 	"Date.h"
 	<iostream>
 
-1753185315 source:c:\users\nwnis\onedrive\documents\github\ict283\test\weatherrecordtest.cpp
+1753592184 source:c:\users\nwnis\onedrive\documents\github\ict283\test\weatherrecordtest.cpp
 	"WeatherRecord.h"
 	<iostream>
 
@@ -103,7 +103,7 @@
 	"MTime.h"
 	<iostream>
 
-1753449573 c:\users\nwnis\onedrive\documents\github\ict283\include\csvrecord.h
+1753604681 c:\users\nwnis\onedrive\documents\github\ict283\include\csvrecord.h
 	<iostream>
 	<fstream>
 	<string>
@@ -115,7 +115,7 @@
 	"Vector.h"
 	"Utils.h"
 
-1753449598 source:c:\users\nwnis\onedrive\documents\github\ict283\src\csvrecord.cpp
+1753609000 source:c:\users\nwnis\onedrive\documents\github\ict283\src\csvrecord.cpp
 	"CSVRecord.h"
 
 1753428612 source:c:\users\nwnis\onedrive\documents\github\ict283\src\utils.cpp
@@ -128,10 +128,10 @@
 	<stdexcept>
 	<string>
 
-1753473549 c:\users\nwnis\onedrive\documents\github\ict283\include\avl.h
+1753603564 c:\users\nwnis\onedrive\documents\github\ict283\include\avl.h
 	"bst.h"
 
-1753408209 c:\users\nwnis\onedrive\documents\github\ict283\include\bst.h
+1753617373 c:\users\nwnis\onedrive\documents\github\ict283\include\bst.h
 	"Vector.h"
 
 1753410499 c:\users\nwnis\onedrive\documents\github\ict283\include\map.h
@@ -139,5 +139,14 @@
 
 1753583593 source:c:\users\nwnis\onedrive\documents\github\ict283\test\utilstest.cpp
 	"Utils.h"
+	<iostream>
+
+1753619336 source:c:\users\nwnis\onedrive\documents\github\ict283\test\maptest.cpp
+	"Map.h"
+	<iostream>
+	<string>
+
+1753620470 source:c:\users\nwnis\onedrive\documents\github\ict283\test\bsttest.cpp
+	"BST.h"
 	<iostream>
 

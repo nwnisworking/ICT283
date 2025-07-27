@@ -115,6 +115,12 @@
 			<Option glob="2585997903" />
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="test/BSTTest.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option glob="2585997903" />
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="test/DateTest.cpp">
 			<Option compile="0" />
 			<Option link="0" />
