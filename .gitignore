@@ -5,3 +5,4 @@ WindTempSolar.csv
 html/**
 cppcheck.txt
 CppCheckResults.xml
+doc/**
