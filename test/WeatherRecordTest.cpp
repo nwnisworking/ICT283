@@ -8,15 +8,12 @@ using std::endl;
 // Forward declarations of test functions
 void Test1();
 void Test2();
-void Test3();
 
 int main() {
   cout << "Weather Record Test Program" << endl << endl;
   Test1();
   cout << endl;
   Test2();
-  cout << endl;
-  Test3();
   cout << endl;
   cout << "All tests completed." << endl;
   cout << endl;

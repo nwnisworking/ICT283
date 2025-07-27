@@ -64,9 +64,9 @@ void Test3(){
   map_1 = map;
 
   cout << "Assignment Operator Test" << endl;
-  cout << "Map 1:" <<  map_1.Get(1) << endl;
-  cout << "Map 2:" <<  map_1.Get(2) << endl;
-  cout << "Map 3:" <<  map_1.Get(3) << endl;
+  cout << "Map 1:" <<  *map_1.Get(1) << endl;
+  cout << "Map 2:" <<  *map_1.Get(2) << endl;
+  cout << "Map 3:" <<  *map_1.Get(3) << endl;
 }
 
 void Test4(){
